@@ -56,7 +56,7 @@ void render_area::paintEvent(QPaintEvent*)
     pen.setColor(Qt::black);
     painter.setPen(pen);
 
-    painter.drawRect(0,0,100,100);
+    painter.drawRect(0,0,200,100);
 
     painter.drawLine(0,0,mouse_point.x, mouse_point.y);
 
