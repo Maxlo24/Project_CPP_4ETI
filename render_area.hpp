@@ -7,7 +7,8 @@
 #include <QTime>
 #include <list>
 
-
+#include "graph2d.hpp"
+#include "zone.hpp"
 #include "vec2.hpp"
 
 //forward declaration of QLabel
@@ -40,6 +41,13 @@ protected:
 
 private: //attributes
 
+    graph2D<zone>* graph;
+
+    int longueur;
+    int largeur;
+
+    int dx;
+    int dy;
 
     /** Storage for all the discrete vertices of the objets that we use to draw them */
     std::vector<std::vector<vec2> > point_sets;

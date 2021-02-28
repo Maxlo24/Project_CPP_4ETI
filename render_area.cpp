@@ -1,10 +1,11 @@
-#include "render_area.hpp"
-
-
 #include <QPainter>
 #include <QMouseEvent>
 #include <QLabel>
 #include <QStyle>
+#include <QCursor>
+
+#include "render_area.hpp"
+
 
 
 #include <iostream>
@@ -15,6 +16,7 @@
 render_area::render_area(QWidget *parent)
     :QWidget(parent),point_sets(),mouse_point(),is_clicked()
 {
+    //std::cout<<parent->size().width()<<" "<<parent->size().height();
     //setBackgroundRole(QPalette::Base);
     //setAutoFillBackground(true);
 
@@ -29,11 +31,29 @@ render_area::~render_area()
 
 void render_area::init_fig()
 {
+    std::cout<<"Init graph ..."<<std::endl;
 
-    std::cout<<"Init geometric figures ..."<<std::endl;
+    this->setCursor(Qt::CrossCursor);
 
+
+
+    this->longueur = this->size().width();
+    this->largeur = this->size().height();
+
+    //this->graph = new graph2D<zone>(20,14);
+    this->graph = new graph2D<zone>(30,20);
+    //this->graph = new graph2D<zone>(60,40);
+
+    this->dx = this->longueur / this->graph->size()[0];
+    this->dy = this->largeur / this->graph->size()[1] -1 ;
+
+
+
+    std::cout<<this->longueur<<" "<<this->largeur<<std::endl;
 
     std::cout<<"Init OK"<<std::endl;
+
+
 
 }
 
@@ -46,19 +66,45 @@ void render_area::paintEvent(QPaintEvent*)
     painter.setRenderHint(QPainter::Antialiasing, true);
 
     QBrush brush = painter.brush();
-    brush.setColor(Qt::red);
+    brush.setColor(Qt::white);
     brush.setStyle(Qt::SolidPattern);
     painter.setBrush(brush);
 
     QPen pen;
 
     pen.setWidth(1.0);
-    pen.setColor(Qt::black);
+    pen.setColor(Qt::gray);
     painter.setPen(pen);
 
-    painter.drawRect(0,0,200,200);
+    vector<int> test = {1,2};
 
-    painter.drawLine(0,0,mouse_point.x, mouse_point.y);
+
+    int x = this->graph->size()[0];
+    int y = this->graph->size()[1];
+
+
+    for(int i = 0 ; i < x;i++){
+        for(int j = 0; j<y ; j++){
+
+            if(this->graph->element(i,j).etat() == 0){
+                brush.setColor(Qt::white);
+            }
+            if(this->graph->element(i,j).etat() == 1){
+                brush.setColor(Qt::black);
+            }
+            painter.setBrush(brush);
+            painter.drawRect(i*dx,j*dy,i*dx+dx,j*dy+dy);
+        }
+    }
+    //painter.drawRect(0,0,dx,dy);
+
+
+    //painter.drawRect(0,0,200,200);
+
+    //painter.drawLine(0,0,mouse_point.x, mouse_point.y);
+
+
+
 
 }
 
@@ -68,17 +114,36 @@ void render_area::paintEvent(QPaintEvent*)
 void render_area::mouseMoveEvent(QMouseEvent *event)
 {
     mouse_point=vec2(event->x(),event->y());
+
+    int i = mouse_point.x/dx;
+    int j = mouse_point.y/dy;
+
+    if(i <  this->graph->size()[0] &&  j < this->graph->size()[1])
+        this->graph->element(i,j).etat() = 1;
+
     repaint();
 }
 
-void render_area::mousePressEvent(QMouseEvent *)
+void render_area::mousePressEvent(QMouseEvent*)
 {
     is_clicked=true;
     repaint();
 }
 
-void render_area::mouseReleaseEvent(QMouseEvent *)
+void render_area::mouseReleaseEvent(QMouseEvent*)
 {
     is_clicked=false;
+
+    int x = this->graph->size()[0];
+    int y = this->graph->size()[1];
+
+
+    for(int i = 0 ; i < x;i++){
+        for(int j = 0; j<y ; j++){
+             this->graph->element(i,j).etat() = 0;
+        }
+    }
+
+
     repaint();
 }
