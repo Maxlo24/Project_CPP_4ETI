@@ -14,7 +14,7 @@
 
 
 render_area::render_area(QWidget *parent)
-    :QWidget(parent),point_sets(),mouse_point(),is_clicked()
+    :QWidget(parent),point_sets(),mouse_point(),is_left_clicked(),is_right_clicked()
 {
     //std::cout<<parent->size().width()<<" "<<parent->size().height();
     //setBackgroundRole(QPalette::Base);
@@ -126,21 +126,34 @@ void render_area::mouseMoveEvent(QMouseEvent *event)
     int i = mouse_point.x/dx;
     int j = mouse_point.y/dy;
 
-    if(i < this->graph.size()[0] &&  j < this->graph.size()[1])
-        this->graph(i,j).etat() = 1;
+    if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
+        if(is_left_clicked){
+            this->graph(i,j).etat() = 1;
+        }
+        if (is_right_clicked){
+            this->graph(i,j).etat() = 0;
+        }
+    }
+
 
     repaint();
 }
 
-void render_area::mousePressEvent(QMouseEvent*)
+void render_area::mousePressEvent(QMouseEvent *event)
 {
-    is_clicked=true;
+    if(event->button() == Qt::LeftButton){
+        is_left_clicked=true;
+    }
+    if (event->button() == Qt::RightButton){
+        is_right_clicked=true;
+    }
     repaint();
 }
 
 void render_area::mouseReleaseEvent(QMouseEvent*)
 {
-    is_clicked=false;
+    is_left_clicked=false;
+    is_right_clicked=false;
     repaint();
 }
 

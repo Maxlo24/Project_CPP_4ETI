@@ -61,7 +61,8 @@ private: //attributes
     /** The current position of the click of the mouse */
     vec2 mouse_point;
     /** Indicates if the mouse is currently clicked or not */
-    bool is_clicked;
+    bool is_left_clicked;
+    bool is_right_clicked;
 
 };
 #endif // RENDER_AREA_HPP
