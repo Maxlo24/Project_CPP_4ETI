@@ -1,6 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
-
+#include<vector>
+using std::vector;
 
 class cell
 {
@@ -13,6 +14,7 @@ public:
 
 private:
     int information;
+    //vector<cell> fourNeighbors; // TODO
 };
 
 #endif // CELL_H
