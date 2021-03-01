@@ -9,11 +9,13 @@ public:
     cell()=default;
     cell(int etat);
 
-    int etat() const;
-    int& etat();
+    int infos() const;
+    int& infos();
 
 private:
-    int information;
+    int state;
+
+    //bool initEnd;
     //vector<cell> fourNeighbors; // TODO
 };
 

@@ -97,10 +97,10 @@ void render_area::paintEvent(QPaintEvent*)
     for(int i = 0 ; i < x;i++){
         for(int j = 0; j< y ; j++){
 
-            if(this->graph(i,j).etat() == 0){
+            if(this->graph(i,j).infos() == 0){
                 brush.setColor(Qt::white);
             }
-            if(this->graph(i,j).etat() == 1){
+            if(this->graph(i,j).infos() == 1){
                 brush.setColor(Qt::black);
             }
             painter.setBrush(brush);
@@ -128,10 +128,10 @@ void render_area::mouseMoveEvent(QMouseEvent *event)
 
     if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
         if(is_left_clicked){
-            this->graph(i,j).etat() = 1;
+            this->graph(i,j).infos() = 1;
         }
         if (is_right_clicked){
-            this->graph(i,j).etat() = 0;
+            this->graph(i,j).infos() = 0;
         }
     }
 

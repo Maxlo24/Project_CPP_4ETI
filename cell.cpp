@@ -2,13 +2,14 @@
 
 cell::cell(int etat)
 {
-    this->information = etat;
+    this->state = etat;
+    //this->initEnd = false;
 }
 
-int cell::etat() const{
-    return this->information;
+int cell::infos() const{
+    return this->state;
 }
 
-int& cell::etat(){
-    return this->information;
+int& cell::infos(){
+    return this->state;
 }
