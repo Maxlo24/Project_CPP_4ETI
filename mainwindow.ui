@@ -39,8 +39,8 @@ color: rgb(43, 43, 43);</string>
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>651</width>
-      <height>471</height>
+      <width>640</width>
+      <height>480</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="main_Layout"/>

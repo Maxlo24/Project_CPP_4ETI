@@ -41,11 +41,11 @@ void render_area::init_fig()
     this->largeur = this->size().height();
 
     //this->graph = new graph2D<zone>(20,14);
-    this->graph = new graph2D<zone>(30,20);
+    this->graph = new graph2D<zone>(40,30);
     //this->graph = new graph2D<zone>(60,40);
 
     this->dx = this->longueur / this->graph->size()[0];
-    this->dy = this->largeur / this->graph->size()[1] -1 ;
+    this->dy = this->largeur / this->graph->size()[1];
 
 
 
@@ -84,7 +84,7 @@ void render_area::paintEvent(QPaintEvent*)
 
 
     for(int i = 0 ; i < x;i++){
-        for(int j = 0; j<y ; j++){
+        for(int j = 0; j< y ; j++){
 
             if(this->graph->element(i,j).etat() == 0){
                 brush.setColor(Qt::white);
