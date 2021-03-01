@@ -1,14 +1,14 @@
-#include "zone.hpp"
+#include "cell.hpp"
 
-zone::zone(int etat)
+cell::cell(int etat)
 {
     this->information = etat;
 }
 
-int zone::etat() const{
+int cell::etat() const{
     return this->information;
 }
 
-int& zone::etat(){
+int& cell::etat(){
     return this->information;
 }

@@ -42,13 +42,13 @@ void render_area::init_fig()
 
     switch (this->graph_size_select) {
         case 1:
-                this->graph = graph2D<zone>(12,9);
+                this->graph = graph2D<cell>(12,9);
                 break;
         case 2:
-                this->graph = graph2D<zone>(20,15);
+                this->graph = graph2D<cell>(20,15);
                 break;
         case 3:
-                this->graph = graph2D<zone>(40,30);
+                this->graph = graph2D<cell>(40,30);
                 break;
     }
 

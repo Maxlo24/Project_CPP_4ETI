@@ -8,7 +8,7 @@
 #include <list>
 
 #include "graph2d.hpp"
-#include "zone.hpp"
+#include "cell.hpp"
 #include "vec2.hpp"
 
 //forward declaration of QLabel
@@ -45,7 +45,7 @@ private slots:
 
 private: //attributes
 
-    graph2D<zone> graph;
+    graph2D<cell> graph;
 
     int longueur;
     int largeur;
