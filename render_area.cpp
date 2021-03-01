@@ -40,9 +40,20 @@ void render_area::init_fig()
     this->longueur = this->size().width();
     this->largeur = this->size().height();
 
-    //this->graph = new graph2D<zone>(20,14);
-    this->graph = new graph2D<zone>(40,30);
-    //this->graph = new graph2D<zone>(60,40);
+    int i = 1;
+    switch (i) {
+        case 1:
+                this->graph = new graph2D<zone>(12,9);
+                break;
+        case 2:
+                this->graph = new graph2D<zone>(20,15);
+                break;
+        case 3:
+                this->graph = new graph2D<zone>(40,30);
+                break;
+    }
+
+
 
     this->dx = this->longueur / this->graph->size()[0];
     this->dy = this->largeur / this->graph->size()[1];
@@ -104,8 +115,6 @@ void render_area::paintEvent(QPaintEvent*)
     //painter.drawLine(0,0,mouse_point.x, mouse_point.y);
 
 
-
-
 }
 
 
@@ -133,17 +142,16 @@ void render_area::mousePressEvent(QMouseEvent*)
 void render_area::mouseReleaseEvent(QMouseEvent*)
 {
     is_clicked=false;
+    repaint();
+}
 
-    int x = this->graph->size()[0];
-    int y = this->graph->size()[1];
+void render_area::update_grid_size(){
 
+    //this->graph_size_select = 2;
+    repaint();
+}
 
-    for(int i = 0 ; i < x;i++){
-        for(int j = 0; j<y ; j++){
-             this->graph->element(i,j).etat() = 0;
-        }
-    }
-
-
+void render_area::reset_grid(){
+    init_fig();
     repaint();
 }

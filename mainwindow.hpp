@@ -22,5 +22,6 @@ public:
 private:
     Ui::MainWindow *ui;
     render_area *render;
+
 };
 #endif // MAINWINDOW_H

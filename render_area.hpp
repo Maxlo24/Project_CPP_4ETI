@@ -38,6 +38,10 @@ protected:
     /** Function called when the mouse is released */
     void mouseReleaseEvent(QMouseEvent *event);
 
+private slots:
+    void update_grid_size();
+    void reset_grid();
+
 
 private: //attributes
 
@@ -48,6 +52,8 @@ private: //attributes
 
     int dx;
     int dy;
+
+    //int graph_size_select;
 
     /** Storage for all the discrete vertices of the objets that we use to draw them */
     std::vector<std::vector<vec2> > point_sets;

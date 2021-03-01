@@ -12,7 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->main_Layout->addWidget(render);
 
+    //Connection with signals
+    connect(ui->gridSideSlider,SIGNAL(valueChanged(int)),this->render ,SLOT(update_grid_size()));
+    connect(ui->resetButton,SIGNAL(clicked()), this->render, SLOT(reset_grid()));
 }
+
 
 MainWindow::~MainWindow()
 {

@@ -1,5 +1,5 @@
-#ifndef ZONE_HPP
-#define ZONE_HPP
+#ifndef ZONE_H
+#define ZONE_H
 
 
 class zone
@@ -15,4 +15,4 @@ private:
     int information;
 };
 
-#endif // ZONE_HPP
+#endif // ZONE_H
