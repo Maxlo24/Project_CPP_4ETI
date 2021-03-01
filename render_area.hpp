@@ -39,7 +39,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 private slots:
-    void update_grid_size();
+    void update_grid_size(int i);
     void reset_grid();
 
 
@@ -50,10 +50,10 @@ private: //attributes
     int longueur;
     int largeur;
 
+    int graph_size_select;
+
     int dx;
     int dy;
-
-    //int graph_size_select;
 
     /** Storage for all the discrete vertices of the objets that we use to draw them */
     std::vector<std::vector<vec2> > point_sets;

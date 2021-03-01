@@ -20,6 +20,11 @@ render_area::render_area(QWidget *parent)
     //setBackgroundRole(QPalette::Base);
     //setAutoFillBackground(true);
 
+    this->longueur = this->size().width();
+    this->largeur = this->size().height();
+
+    this->graph_size_select = 1;
+
     init_fig();
 }
 
@@ -33,15 +38,9 @@ void render_area::init_fig()
 {
     std::cout<<"Init graph ..."<<std::endl;
 
-    this->setCursor(Qt::CrossCursor);
 
 
-
-    this->longueur = this->size().width();
-    this->largeur = this->size().height();
-
-    int i = 1;
-    switch (i) {
+    switch (this->graph_size_select) {
         case 1:
                 this->graph = graph2D<zone>(12,9);
                 break;
@@ -61,6 +60,8 @@ void render_area::init_fig()
 
 
     std::cout<<this->longueur<<" "<<this->largeur<<std::endl;
+
+    this->setCursor(Qt::CrossCursor);
 
     std::cout<<"Init OK"<<std::endl;
 
@@ -118,7 +119,6 @@ void render_area::paintEvent(QPaintEvent*)
 
 
 
-
 void render_area::mouseMoveEvent(QMouseEvent *event)
 {
     mouse_point=vec2(event->x(),event->y());
@@ -144,9 +144,10 @@ void render_area::mouseReleaseEvent(QMouseEvent*)
     repaint();
 }
 
-void render_area::update_grid_size(){
+void render_area::update_grid_size(int i){
 
-    //this->graph_size_select = 2;
+    this->graph_size_select = i;
+    init_fig();
     repaint();
 }
 
