@@ -41,18 +41,17 @@ void render_area::init_fig()
     this->largeur = this->size().height();
 
     //this->graph = new graph2D<zone>(20,14);
-    this->graph = new graph2D<zone>(40,30);
+    this->graph = graph2D<zone>(40,30); // TODO demander pour le new
     //this->graph = new graph2D<zone>(60,40);
 
-    this->dx = this->longueur / this->graph->size()[0];
-    this->dy = this->largeur / this->graph->size()[1];
+    this->dx = this->longueur / this->graph.size()[0];
+    this->dy = this->largeur / this->graph.size()[1];
 
 
 
     std::cout<<this->longueur<<" "<<this->largeur<<std::endl;
 
     std::cout<<"Init OK"<<std::endl;
-
 
 
 }
@@ -79,17 +78,17 @@ void render_area::paintEvent(QPaintEvent*)
     vector<int> test = {1,2};
 
 
-    int x = this->graph->size()[0];
-    int y = this->graph->size()[1];
+    int x = this->graph.size()[0];
+    int y = this->graph.size()[1];
 
 
     for(int i = 0 ; i < x;i++){
         for(int j = 0; j< y ; j++){
 
-            if(this->graph->element(i,j).etat() == 0){
+            if(this->graph(i,j).etat() == 0){
                 brush.setColor(Qt::white);
             }
-            if(this->graph->element(i,j).etat() == 1){
+            if(this->graph(i,j).etat() == 1){
                 brush.setColor(Qt::black);
             }
             painter.setBrush(brush);
@@ -118,8 +117,8 @@ void render_area::mouseMoveEvent(QMouseEvent *event)
     int i = mouse_point.x/dx;
     int j = mouse_point.y/dy;
 
-    if(i <  this->graph->size()[0] &&  j < this->graph->size()[1])
-        this->graph->element(i,j).etat() = 1;
+    if(i < this->graph.size()[0] &&  j < this->graph.size()[1])
+        this->graph(i,j).etat() = 1;
 
     repaint();
 }
@@ -134,13 +133,13 @@ void render_area::mouseReleaseEvent(QMouseEvent*)
 {
     is_clicked=false;
 
-    int x = this->graph->size()[0];
-    int y = this->graph->size()[1];
+    int x = this->graph.size()[0];
+    int y = this->graph.size()[1];
 
 
     for(int i = 0 ; i < x;i++){
         for(int j = 0; j<y ; j++){
-             this->graph->element(i,j).etat() = 0;
+             this->graph(i,j).etat() = 0;
         }
     }
 

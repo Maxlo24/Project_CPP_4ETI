@@ -41,7 +41,7 @@ protected:
 
 private: //attributes
 
-    graph2D<zone>* graph;
+    graph2D<zone> graph;
 
     int longueur;
     int largeur;
@@ -56,10 +56,6 @@ private: //attributes
     vec2 mouse_point;
     /** Indicates if the mouse is currently clicked or not */
     bool is_clicked;
-
-
-
-
 
 };
 #endif // RENDER_AREA_HPP

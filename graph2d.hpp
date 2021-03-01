@@ -11,11 +11,11 @@ class graph2D
 public:
     //constructeur
     graph2D()=default;
-    graph2D(int l, int L);
+    graph2D(int x, int y);
 
     //Prototypes
-    T element(int i, int j) const;
-    T& element(int i, int j);
+    T operator()(int i, int j) const;
+    T& operator()(int i, int j);
     vector<int> size() const;
 
 private:
@@ -26,29 +26,31 @@ private:
 };
 
 template<typename T>
-graph2D<T>::graph2D(int l, int L){
-    for(int i = 0; i<l; i++){
+graph2D<T>::graph2D(int x, int y){
+    this->longueur = x;
+    this->largeur = y;
+
+    for(int i = 0; i<this->longueur; i++)
+    {
         vector<T> ligne;
-        for(int j = 0; j<L; j++){
+        for(int j = 0; j<this->largeur; j++)
+        {
             T element;
             ligne.push_back(element);
         }
         this->tableau.push_back(ligne);
     }
-
-    this->longueur = l;
-    this->largeur = L;
 }
 
 template<typename T>
-T graph2D<T>::element(int i, int j) const{
+T graph2D<T>::operator()(int i, int j) const{
     if(i<0 || i >= this->longueur || j<0 || j >= this->largeur)
         throw std::exception();
     return this->tableau[i][j];
 }
 
 template<typename T>
-T& graph2D<T>::element(int i, int j){
+T& graph2D<T>::operator()(int i, int j){
     if(i<0 || i >= this->longueur || j<0 || j >= this->largeur)
         throw std::exception();
     return this->tableau[i][j];
