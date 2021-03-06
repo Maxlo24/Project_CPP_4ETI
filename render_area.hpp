@@ -6,10 +6,13 @@
 #include <QTimer>
 #include <QTime>
 #include <list>
+#include <vector>
 
 #include "graph2d.hpp"
 #include "cell.hpp"
 #include "vec2.hpp"
+
+using std::vector;
 
 //forward declaration of QLabel
 class QLabel;
@@ -38,8 +41,12 @@ protected:
     /** Function called when the mouse is released */
     void mouseReleaseEvent(QMouseEvent *event);
 
+    /** Function called in render_area */
+    void brush_paint_cell(int i, int j, int color);
+
 private slots:
-    void update_grid_size(int i);
+    void update_grid_size(int size);
+    void update_brush_size(int size);
     void reset_grid();
 
 
@@ -47,16 +54,21 @@ private: //attributes
 
     graph2D<cell> graph;
 
-    int longueur;
-    int largeur;
+    int width;
+    int height;
+
+    vector<int> start_point;
+    vector<int> end_point;
 
     int graph_size_select;
+    int graph_brush_size;
 
     int dx;
     int dy;
 
+
     /** Storage for all the discrete vertices of the objets that we use to draw them */
-    std::vector<std::vector<vec2> > point_sets;
+    vector<vector<vec2> > point_sets;
 
     /** The current position of the click of the mouse */
     vec2 mouse_point;

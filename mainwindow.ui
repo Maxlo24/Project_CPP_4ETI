@@ -172,7 +172,7 @@ color: rgb(43, 43, 43);</string>
      <string>Vitesse de recherche</string>
     </property>
    </widget>
-   <widget class="QSlider" name="brushSlider">
+   <widget class="QSlider" name="brush_Size_Slider">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -336,7 +336,7 @@ color: rgb(43, 43, 43);</string>
      <number>1</number>
     </property>
     <property name="maximum">
-     <number>3</number>
+     <number>4</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>

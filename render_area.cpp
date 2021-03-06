@@ -20,10 +20,15 @@ render_area::render_area(QWidget *parent)
     //setBackgroundRole(QPalette::Base);
     //setAutoFillBackground(true);
 
-    this->longueur = this->size().width();
-    this->largeur = this->size().height();
+    this->width = this->size().width();
+    this->height = this->size().height();
 
     this->graph_size_select = 1;
+    this->graph_brush_size = 1;
+
+    vector<int> s = {0,0};
+    this->start_point = s;
+    this->end_point = s;
 
     init_fig();
 }
@@ -50,16 +55,26 @@ void render_area::init_fig()
         case 3:
                 this->graph = graph2D<cell>(40,30);
                 break;
+        case 4:
+                this->graph = graph2D<cell>(80,60);
+                break;
     }
 
+    std::cout<<"Taille de la grille : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
+
+//    this->end_point = this->graph.size();
+
+//    this->end_point[0] = this->graph.size()[0];
+//    this->end_point[1] = this->graph.size()[1];
+
+    this->graph(start_point[0],start_point[1]).infos() = 2;
+    this->graph(end_point[0],end_point[1]).infos() = 3;
 
 
-    this->dx = this->longueur / this->graph.size()[0];
-    this->dy = this->largeur / this->graph.size()[1];
+    this->dx = this->width / this->graph.size()[0];
+    this->dy = this->height / this->graph.size()[1];
 
 
-
-    std::cout<<this->longueur<<" "<<this->largeur<<std::endl;
 
     this->setCursor(Qt::CrossCursor);
 
@@ -97,12 +112,13 @@ void render_area::paintEvent(QPaintEvent*)
     for(int i = 0 ; i < x;i++){
         for(int j = 0; j< y ; j++){
 
-            if(this->graph(i,j).infos() == 0){
-                brush.setColor(Qt::white);
+            switch (this->graph(i,j).infos()) {
+                case 0:brush.setColor(Qt::white);break;
+                case 1:brush.setColor(Qt::black);break;
+                case 2:brush.setColor(QColor(181,230,29,255));break;
+                case 3:brush.setColor(QColor(250,201,14,255));break;
             }
-            if(this->graph(i,j).infos() == 1){
-                brush.setColor(Qt::black);
-            }
+
             painter.setBrush(brush);
             painter.drawRect(i*dx,j*dy,i*dx+dx,j*dy+dy);
         }
@@ -128,14 +144,12 @@ void render_area::mouseMoveEvent(QMouseEvent *event)
 
     if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
         if(is_left_clicked){
-            this->graph(i,j).infos() = 1;
+            brush_paint_cell(i,j,1);
         }
         if (is_right_clicked){
-            this->graph(i,j).infos() = 0;
+            brush_paint_cell(i,j,0);
         }
     }
-
-
     repaint();
 }
 
@@ -164,7 +178,49 @@ void render_area::update_grid_size(int i){
     repaint();
 }
 
+void render_area::update_brush_size(int size){
+
+    this->graph_brush_size = size;
+}
+
 void render_area::reset_grid(){
     init_fig();
     repaint();
+}
+
+void render_area::brush_paint_cell(int i, int j, int color){
+    switch (this->graph_brush_size) {
+        case 3:
+            if(i+2 < this->graph.size()[0])
+                this->graph(i+2,j).infos() = color;
+            if(i-2 >= 0)
+                this->graph(i-2,j).infos() = color;
+            if(j+2 < this->graph.size()[1])
+                this->graph(i,j+2).infos() = color;
+            if(j-2 >= 0)
+                this->graph(i,j-2).infos() = color;
+
+            if(i+1 < this->graph.size()[0] && j+1 < this->graph.size()[1])
+                this->graph(i+1,j+1).infos() = color;
+            if(i-1 >= 0 && j+1 < this->graph.size()[1])
+                this->graph(i-1,j+1).infos() = color;
+            if(i+1 < this->graph.size()[0] && j-1 >= 0)
+                this->graph(i+1,j-1).infos() = color;
+            if(i-1 >= 0 && j-1 >= 0)
+                this->graph(i-1,j-1).infos() = color;
+
+        case 2:
+            if(i+1 < this->graph.size()[0])
+                this->graph(i+1,j).infos() = color;
+            if(i-1 >= 0)
+                this->graph(i-1,j).infos() = color;
+            if(j+1 < this->graph.size()[1])
+                this->graph(i,j+1).infos() = color;
+            if(j-1 >= 0)
+                this->graph(i,j-1).infos() = color;
+
+        case 1:
+            this->graph(i,j).infos() = color;
+            break;
+    }
 }
