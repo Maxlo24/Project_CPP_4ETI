@@ -12,7 +12,6 @@ public:
     int infos() const;
 
     vector<cell*> fourN() const;
-    vector<cell*> eightN() const;
 
 
 private:
