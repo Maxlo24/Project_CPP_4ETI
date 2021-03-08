@@ -20,6 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gridSideSlider,SIGNAL(valueChanged(int)),this->render ,SLOT(update_grid_size(int)));
     //button reset
     connect(ui->resetButton,SIGNAL(clicked()), this->render, SLOT(reset_grid()));
+    //Set obstacle readioButton
+    ui->ObstacleradioButton->setChecked(true);
+
+    connect(ui->ObstacleradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
+    connect(ui->StartradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
+    connect(ui->EndradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
+
+    //connect(this, SIGNAL(get_groupBox_select()),this->render, SLOT(update_brush_type(int)));
 
 }
 
@@ -27,4 +35,16 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::get_groupBox_select(){
+    if (ui->ObstacleradioButton->isChecked()){
+        this->render->update_brush_type(1);
+    }
+    if (ui->StartradioButton->isChecked()){
+        this->render->update_brush_type(2);
+    }
+    if (ui->EndradioButton->isChecked()){
+        this->render->update_brush_type(3);
+    }
 }

@@ -6,11 +6,7 @@
 
 #include "render_area.hpp"
 
-
-
 #include <iostream>
-
-
 
 
 render_area::render_area(QWidget *parent)
@@ -24,6 +20,7 @@ render_area::render_area(QWidget *parent)
     this->height = this->size().height();
 
     this->graph_size_select = 1;
+    this->graph_brush_type = 1;
     this->graph_brush_size = 1;
 
     vector<int> s = {0,0};
@@ -62,24 +59,14 @@ void render_area::init_fig()
 
     std::cout<<"Taille de la grille : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
 
-//    this->end_point = this->graph.size();
-
-//    this->end_point[0] = this->graph.size()[0];
-//    this->end_point[1] = this->graph.size()[1];
-
-    this->graph(start_point[0],start_point[1]).infos() = 2;
-    this->graph(end_point[0],end_point[1]).infos() = 3;
-
 
     this->dx = this->width / this->graph.size()[0];
     this->dy = this->height / this->graph.size()[1];
 
 
-
     this->setCursor(Qt::CrossCursor);
 
     std::cout<<"Init OK"<<std::endl;
-
 
 }
 
@@ -123,44 +110,29 @@ void render_area::paintEvent(QPaintEvent*)
             painter.drawRect(i*dx,j*dy,i*dx+dx,j*dy+dy);
         }
     }
-    //painter.drawRect(0,0,dx,dy);
-
-
-    //painter.drawRect(0,0,200,200);
-
-    //painter.drawLine(0,0,mouse_point.x, mouse_point.y);
-
 
 }
-
 
 
 void render_area::mouseMoveEvent(QMouseEvent *event)
 {
     mouse_point=vec2(event->x(),event->y());
 
-    int i = mouse_point.x/dx;
-    int j = mouse_point.y/dy;
-
-    if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
-        if(is_left_clicked){
-            brush_paint_cell(i,j,1);
-        }
-        if (is_right_clicked){
-            brush_paint_cell(i,j,0);
-        }
-    }
+    paint();
     repaint();
 }
 
 void render_area::mousePressEvent(QMouseEvent *event)
 {
+    mouse_point=vec2(event->x(),event->y());
+
     if(event->button() == Qt::LeftButton){
         is_left_clicked=true;
     }
     if (event->button() == Qt::RightButton){
         is_right_clicked=true;
     }
+    paint();
     repaint();
 }
 
@@ -178,6 +150,10 @@ void render_area::update_grid_size(int i){
     repaint();
 }
 
+void render_area::update_brush_type(int type){
+    this->graph_brush_type = type;
+}
+
 void render_area::update_brush_size(int size){
 
     this->graph_brush_size = size;
@@ -188,8 +164,37 @@ void render_area::reset_grid(){
     repaint();
 }
 
+void render_area::paint(){
+    int i = mouse_point.x/dx;
+    int j = mouse_point.y/dy;
+
+    if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
+        if(is_left_clicked){
+            if(this->graph_brush_type == 2){
+                brush_paint_cell(this->start_point[0],this->start_point[1],0);
+                this->start_point[0]=i;
+                this->start_point[1]=j;
+            }
+            if(this->graph_brush_type == 3){
+                brush_paint_cell(this->end_point[0],this->end_point[1],0);
+                this->end_point[0]=i;
+                this->end_point[1]=j;
+            }
+            brush_paint_cell(i,j,this->graph_brush_type);
+        }
+        if (is_right_clicked){
+            brush_paint_cell(i,j,0);
+        }
+    }
+}
+
+
 void render_area::brush_paint_cell(int i, int j, int color){
-    switch (this->graph_brush_size) {
+    int brushSize = this->graph_brush_size;
+    if(this->graph_brush_type == 2 || this->graph_brush_type == 3){
+        brushSize = 1;
+    }
+    switch (brushSize) {
         case 3:
             if(i+2 < this->graph.size()[0])
                 this->graph(i+2,j).infos() = color;

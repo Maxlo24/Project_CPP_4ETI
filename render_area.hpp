@@ -28,6 +28,7 @@ public:
     ~render_area();
 
     void init_fig();
+    void update_brush_type(int type);
 
 
 protected:
@@ -42,7 +43,11 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
     /** Function called in render_area */
+    /** Function to get the cell wher the mouse is*/
+    void paint();
+    /** Function to paint the cell*/
     void brush_paint_cell(int i, int j, int color);
+
 
 private slots:
     void update_grid_size(int size);
@@ -61,6 +66,7 @@ private: //attributes
     vector<int> end_point;
 
     int graph_size_select;
+    int graph_brush_type;
     int graph_brush_size;
 
     int dx;
