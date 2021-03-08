@@ -3,7 +3,11 @@
 cell::cell(int etat)
 {
     this->state = etat;
-    //this->initEnd = false;
+}
+
+cell::cell()
+{
+    this->state = 0;
 }
 
 int cell::infos() const{
@@ -12,4 +16,8 @@ int cell::infos() const{
 
 int& cell::infos(){
     return this->state;
+}
+
+vector<cell*> cell::fourN() const{
+    return this->fourNeighbors;
 }
