@@ -62,6 +62,8 @@ private: //attributes
     int width;
     int height;
 
+    void fillNeighbors();
+
     vector<int> start_point;
     vector<int> end_point;
 

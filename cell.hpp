@@ -6,17 +6,19 @@ using std::vector;
 class cell
 {
 public:
-    cell()=default;
+    cell();
     cell(int etat);
 
     int infos() const;
-    int& infos();
+
+    vector<cell*> fourN() const;
 
 private:
     int state;
+    vector<cell*> Neighbors; // Haut gauche droite bas
 
-    //bool initEnd;
-    //vector<cell> fourNeighbors; // TODO
+    int& infos();
+    friend class render_area;
 };
 
 #endif // CELL_H

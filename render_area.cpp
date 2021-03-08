@@ -35,6 +35,30 @@ render_area::~render_area()
 
 }
 
+void render_area::fillNeighbors() {
+    int x = this->graph.size()[0];
+    int y = this->graph.size()[1];
+
+    for(int i = 0 ; i < x;i++) {
+        for(int j = 0; j< y ; j++) {
+            if(j != 0){
+                this->graph(i,j).Neighbors.push_back(&(this->graph(i,j-1)));
+            }
+            else if (i != 0) {
+                this->graph(i,j).Neighbors.push_back(&(this->graph(i-1,j)));
+            }
+            else if (i != x-1) {
+                this->graph(i,j).Neighbors.push_back(&(this->graph(i+1,j)));
+            }
+            else if (j != y-1) {
+                this->graph(i,j).Neighbors.push_back(&(this->graph(i,j+1)));
+            }
+            // TODO Refaire avec une méthode de construction (private dans cell) de Neighbors
+            // TODO eventuellement transformer le vector en map
+            // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
+        }
+    }
+}
 
 void render_area::init_fig()
 {
@@ -56,6 +80,8 @@ void render_area::init_fig()
                 this->graph = graph2D<cell>(80,60);
                 break;
     }
+
+    this->fillNeighbors();
 
     std::cout<<"Taille de la grille : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
 

@@ -3,7 +3,11 @@
 cell::cell(int etat)
 {
     this->state = etat;
-    //this->initEnd = false;
+}
+
+cell::cell()
+{
+    this->state = 0;
 }
 
 int cell::infos() const{
@@ -12,4 +16,11 @@ int cell::infos() const{
 
 int& cell::infos(){
     return this->state;
+}
+
+vector<cell*> cell::fourN() const{
+    auto N = this->Neighbors;
+    // gestion droit : ne renvoyer que les voisins autorisés et dans 4N et pas tout Neighbors
+    // selon this->state et voisins.state, ne garder dans N que ceux autorisés
+    return N;
 }
