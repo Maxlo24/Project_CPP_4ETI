@@ -19,5 +19,8 @@ int& cell::infos(){
 }
 
 vector<cell*> cell::fourN() const{
-    return this->fourNeighbors;
+    auto N = this->Neighbors;
+    // gestion droit : ne renvoyer que les voisins autorisés et dans 4N et pas tout Neighbors
+    // selon this->state et voisins.state, ne garder dans N que ceux autorisés
+    return N;
 }

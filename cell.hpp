@@ -13,10 +13,9 @@ public:
 
     vector<cell*> fourN() const;
 
-
 private:
     int state;
-    vector<cell*> fourNeighbors;
+    vector<cell*> Neighbors; // Haut gauche droite bas
 
     int& infos();
     friend class render_area;
