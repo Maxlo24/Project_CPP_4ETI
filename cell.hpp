@@ -1,7 +1,9 @@
 #ifndef CELL_H
 #define CELL_H
-#include<vector>
-using std::vector;
+#include<map>
+#include<string>
+using std::map;
+using std::string;
 
 class cell
 {
@@ -11,13 +13,15 @@ public:
 
     int infos() const;
 
-    vector<cell*> fourN() const;
+    map<string,cell*> fourN() const;
 
 private:
     int state;
-    vector<cell*> Neighbors; // Haut gauche droite bas
+    map<string,cell*> Neighbors; // Haut gauche droite bas
 
     int& infos();
+    void addNeighbors(string direction, cell* ptrC);
+
     friend class render_area;
 };
 

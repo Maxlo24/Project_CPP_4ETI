@@ -42,19 +42,29 @@ void render_area::fillNeighbors() {
     for(int i = 0 ; i < x;i++) {
         for(int j = 0; j< y ; j++) {
             if(j != 0){
-                this->graph(i,j).Neighbors.push_back(&(this->graph(i,j-1)));
+                this->graph(i,j).addNeighbors("top", &(this->graph(i,j-1)));
             }
-            else if (i != 0) {
-                this->graph(i,j).Neighbors.push_back(&(this->graph(i-1,j)));
+            else{
+                this->graph(i,j).addNeighbors("top", NULL);
             }
-            else if (i != x-1) {
-                this->graph(i,j).Neighbors.push_back(&(this->graph(i+1,j)));
+            if (i != 0) {
+                this->graph(i,j).addNeighbors("left", &(this->graph(i-1,j)));
+            }            
+            else{
+                this->graph(i,j).addNeighbors("left", NULL);
             }
-            else if (j != y-1) {
-                this->graph(i,j).Neighbors.push_back(&(this->graph(i,j+1)));
+            if (i != x-1) {
+                this->graph(i,j).addNeighbors("right", &(this->graph(i+1,j)));
+            }            
+            else{
+                this->graph(i,j).addNeighbors("right", NULL);
             }
-            // TODO Refaire avec une méthode de construction (private dans cell) de Neighbors
-            // TODO eventuellement transformer le vector en map
+            if (j != y-1) {
+                this->graph(i,j).addNeighbors("bot", &(this->graph(i,j+1)));
+            }            
+            else{
+                this->graph(i,j).addNeighbors("bot", NULL);
+            }
             // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
         }
     }
