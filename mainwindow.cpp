@@ -20,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gridSideSlider,SIGNAL(valueChanged(int)),this->render ,SLOT(update_grid_size(int)));
     //button reset
     connect(ui->resetButton,SIGNAL(clicked()), this->render, SLOT(reset_grid()));
+    //button search
+    connect(ui->serchButton,SIGNAL(clicked()), this->render, SLOT(launch_algo()));
+    //algo select
+    connect(ui->Algo_select,SIGNAL(activated(int)), this->render, SLOT(update_algo_select(int)));
+
     //Set obstacle readioButton
     ui->ObstacleradioButton->setChecked(true);
 

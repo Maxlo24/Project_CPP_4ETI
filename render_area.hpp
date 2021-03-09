@@ -52,7 +52,9 @@ protected:
 private slots:
     void update_grid_size(int size);
     void update_brush_size(int size);
+    void update_algo_select(int select);
     void reset_grid();
+    void launch_algo();
 
 
 private: //attributes
@@ -70,6 +72,10 @@ private: //attributes
     int graph_size_select;
     int graph_brush_type;
     int graph_brush_size;
+
+    int algo_select;
+
+    bool running;
 
     int dx;
     int dy;

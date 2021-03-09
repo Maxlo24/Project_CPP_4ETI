@@ -27,6 +27,9 @@ render_area::render_area(QWidget *parent)
     this->start_point = s;
     this->end_point = s;
 
+    this->running = false;
+    this->algo_select = 0;
+
     init_fig();
 }
 
@@ -35,40 +38,6 @@ render_area::~render_area()
 
 }
 
-void render_area::fillNeighbors() {
-    int x = this->graph.size()[0];
-    int y = this->graph.size()[1];
-
-    for(int i = 0 ; i < x;i++) {
-        for(int j = 0; j< y ; j++) {
-            if(j != 0){
-                this->graph(i,j).addNeighbors("top", &(this->graph(i,j-1)));
-            }
-            else{
-                this->graph(i,j).addNeighbors("top", NULL);
-            }
-            if (i != 0) {
-                this->graph(i,j).addNeighbors("left", &(this->graph(i-1,j)));
-            }            
-            else{
-                this->graph(i,j).addNeighbors("left", NULL);
-            }
-            if (i != x-1) {
-                this->graph(i,j).addNeighbors("right", &(this->graph(i+1,j)));
-            }            
-            else{
-                this->graph(i,j).addNeighbors("right", NULL);
-            }
-            if (j != y-1) {
-                this->graph(i,j).addNeighbors("bot", &(this->graph(i,j+1)));
-            }            
-            else{
-                this->graph(i,j).addNeighbors("bot", NULL);
-            }
-            // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
-        }
-    }
-}
 
 void render_area::init_fig()
 {
@@ -104,6 +73,41 @@ void render_area::init_fig()
 
     std::cout<<"Init OK"<<std::endl;
 
+}
+
+void render_area::fillNeighbors() {
+    int x = this->graph.size()[0];
+    int y = this->graph.size()[1];
+
+    for(int i = 0 ; i < x;i++) {
+        for(int j = 0; j< y ; j++) {
+            if(j != 0){
+                this->graph(i,j).addNeighbors("top", &(this->graph(i,j-1)));
+            }
+            else{
+                this->graph(i,j).addNeighbors("top", NULL);
+            }
+            if (i != 0) {
+                this->graph(i,j).addNeighbors("left", &(this->graph(i-1,j)));
+            }
+            else{
+                this->graph(i,j).addNeighbors("left", NULL);
+            }
+            if (i != x-1) {
+                this->graph(i,j).addNeighbors("right", &(this->graph(i+1,j)));
+            }
+            else{
+                this->graph(i,j).addNeighbors("right", NULL);
+            }
+            if (j != y-1) {
+                this->graph(i,j).addNeighbors("bot", &(this->graph(i,j+1)));
+            }
+            else{
+                this->graph(i,j).addNeighbors("bot", NULL);
+            }
+            // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
+        }
+    }
 }
 
 
@@ -146,9 +150,19 @@ void render_area::paintEvent(QPaintEvent*)
             painter.drawRect(i*dx,j*dy,i*dx+dx,j*dy+dy);
         }
     }
-
 }
 
+void render_area::launch_algo(){
+    this->running = true;
+    this->setCursor(Qt::ForbiddenCursor);
+    std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
+    std::cout<<"Searching ..."<<std::endl;
+
+
+    std::cout<<"End"<<std::endl;
+    this->running =false;
+    this->setCursor(Qt::CrossCursor);
+}
 
 void render_area::mouseMoveEvent(QMouseEvent *event)
 {
@@ -188,11 +202,18 @@ void render_area::update_grid_size(int i){
 
 void render_area::update_brush_type(int type){
     this->graph_brush_type = type;
+    std::cout<<"Brush type : "<<this->graph_brush_type<<std::endl;
 }
 
 void render_area::update_brush_size(int size){
 
     this->graph_brush_size = size;
+    std::cout<<"Brush size : "<<this->graph_brush_size<<std::endl;
+}
+
+void render_area::update_algo_select(int select){
+    this->algo_select = select;
+    std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
 }
 
 void render_area::reset_grid(){
