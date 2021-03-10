@@ -1,13 +1,4 @@
-#include <QPainter>
-#include <QMouseEvent>
-#include <QLabel>
-#include <QStyle>
-#include <QCursor>
-
 #include "render_area.hpp"
-
-#include <iostream>
-
 
 render_area::render_area(QWidget *parent)
     :QWidget(parent),point_sets(),mouse_point(),is_left_clicked(),is_right_clicked()
@@ -29,6 +20,7 @@ render_area::render_area(QWidget *parent)
 
     this->running = false;
     this->algo_select = 0;
+    this->algo_delay = 0;
 
     init_fig();
 }
@@ -158,7 +150,7 @@ void render_area::launch_algo(){
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
     std::cout<<"Searching ..."<<std::endl;
 
-
+    Sleep(this->algo_delay);
     std::cout<<"End"<<std::endl;
     this->running =false;
     this->setCursor(Qt::CrossCursor);
@@ -198,6 +190,14 @@ void render_area::update_grid_size(int i){
     this->graph_size_select = i;
     init_fig();
     repaint();
+}
+
+void render_area::update_algo_speed(int speed){
+    this->algo_delay = 200*speed;
+    if(speed==1){
+        this->algo_delay = 0;
+    }
+    std::cout<<"Algo delay : "<<this->algo_delay<<std::endl;
 }
 
 void render_area::update_brush_type(int type){

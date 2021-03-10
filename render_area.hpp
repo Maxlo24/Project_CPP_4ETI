@@ -5,12 +5,23 @@
 #include <QWidget>
 #include <QTimer>
 #include <QTime>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QLabel>
+#include <QStyle>
+#include <QCursor>
+
+
 #include <list>
 #include <vector>
+#include <windows.h>
 
 #include "graph2d.hpp"
 #include "cell.hpp"
 #include "vec2.hpp"
+
+#include <iostream>
+
 
 using std::vector;
 
@@ -53,6 +64,7 @@ private slots:
     void update_grid_size(int size);
     void update_brush_size(int size);
     void update_algo_select(int select);
+    void update_algo_speed(int speed);
     void reset_grid();
     void launch_algo();
 
@@ -74,6 +86,8 @@ private: //attributes
     int graph_brush_size;
 
     int algo_select;
+
+    int algo_delay;
 
     bool running;
 

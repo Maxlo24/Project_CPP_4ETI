@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->serchButton,SIGNAL(clicked()), this->render, SLOT(launch_algo()));
     //algo select
     connect(ui->Algo_select,SIGNAL(activated(int)), this->render, SLOT(update_algo_select(int)));
+    //Slider speed
+    connect(ui->speedSlider,SIGNAL(valueChanged(int)), this->render, SLOT(update_algo_speed(int)));
 
     //Set obstacle readioButton
     ui->ObstacleradioButton->setChecked(true);
