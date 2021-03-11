@@ -46,12 +46,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::get_groupBox_select(){
     if (ui->ObstacleradioButton->isChecked()){
-        this->render->update_brush_type(1);
+        this->render->update_brush_type(states::obstacle);
     }
     if (ui->StartradioButton->isChecked()){
-        this->render->update_brush_type(2);
+        this->render->update_brush_type(states::start);
     }
     if (ui->EndradioButton->isChecked()){
-        this->render->update_brush_type(3);
+        this->render->update_brush_type(states::end);
     }
 }

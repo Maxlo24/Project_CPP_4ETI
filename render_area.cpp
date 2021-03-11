@@ -11,7 +11,7 @@ render_area::render_area(QWidget *parent)
     this->height = this->size().height();
 
     this->graph_size_select = 1;
-    this->graph_brush_type = 1;
+    this->graph_brush_type = states::obstacle;
     this->graph_brush_size = 1;
 
     vector<int> s = {0,0};
@@ -132,10 +132,11 @@ void render_area::paintEvent(QPaintEvent*)
         for(int j = 0; j< y ; j++){
 
             switch (this->graph(i,j).infos()) {
-                case 0:brush.setColor(Qt::white);break;
-                case 1:brush.setColor(Qt::black);break;
-                case 2:brush.setColor(QColor(181,230,29,255));break;
-                case 3:brush.setColor(QColor(250,201,14,255));break;
+                case states::clear :brush.setColor(Qt::white);break;
+                case states::obstacle :brush.setColor(Qt::black);break;
+                case states::start :brush.setColor(QColor(181,230,29,255));break;
+                case states::end :brush.setColor(QColor(250,201,14,255));break;
+                case states::visited :brush.setColor(QColor(150,150,150,255));break;
             }
 
             painter.setBrush(brush);
@@ -200,7 +201,7 @@ void render_area::update_algo_speed(int speed){
     std::cout<<"Algo delay : "<<this->algo_delay<<std::endl;
 }
 
-void render_area::update_brush_type(int type){
+void render_area::update_brush_type(states type){
     this->graph_brush_type = type;
     std::cout<<"Brush type : "<<this->graph_brush_type<<std::endl;
 }
@@ -227,28 +228,28 @@ void render_area::paint(){
 
     if( i>=0 && i < this->graph.size()[0] && j >= 0 &&  j < this->graph.size()[1]){
         if(is_left_clicked){
-            if(this->graph_brush_type == 2){
-                brush_paint_cell(this->start_point[0],this->start_point[1],0);
+            if(this->graph_brush_type == states::start){
+                brush_paint_cell(this->start_point[0],this->start_point[1],states::clear);
                 this->start_point[0]=i;
                 this->start_point[1]=j;
             }
-            if(this->graph_brush_type == 3){
-                brush_paint_cell(this->end_point[0],this->end_point[1],0);
+            if(this->graph_brush_type == states::end){
+                brush_paint_cell(this->end_point[0],this->end_point[1],states::clear);
                 this->end_point[0]=i;
                 this->end_point[1]=j;
             }
             brush_paint_cell(i,j,this->graph_brush_type);
         }
         if (is_right_clicked){
-            brush_paint_cell(i,j,0);
+            brush_paint_cell(i,j,states::clear);
         }
     }
 }
 
 
-void render_area::brush_paint_cell(int i, int j, int color){
+void render_area::brush_paint_cell(int i, int j, states color){
     int brushSize = this->graph_brush_size;
-    if(this->graph_brush_type == 2 || this->graph_brush_type == 3){
+    if(this->graph_brush_type == states::start || this->graph_brush_type == states::end){
         brushSize = 1;
     }
     switch (brushSize) {
