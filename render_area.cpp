@@ -11,7 +11,7 @@ render_area::render_area(QWidget *parent)
     this->height = this->size().height();
 
     this->graph_size_select = 1;
-    this->graph_brush_type = states::obstacle;
+    this->graph_brush_type = states::visited;
     this->graph_brush_size = 1;
 
     vector<int> s = {0,0};
@@ -136,7 +136,7 @@ void render_area::paintEvent(QPaintEvent*)
                 case states::obstacle :brush.setColor(Qt::black);break;
                 case states::start :brush.setColor(QColor(181,230,29,255));break;
                 case states::end :brush.setColor(QColor(250,201,14,255));break;
-                case states::visited :brush.setColor(QColor(150,150,150,255));break;
+                case states::visited :brush.setColor(QColor(200,200,200,255));break;
             }
 
             painter.setBrush(brush);
