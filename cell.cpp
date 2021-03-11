@@ -24,7 +24,7 @@ void cell::addNeighbors(string direction, cell* ptrC) {
     }
 }
 
-map<std::string,cell*> cell::fourN() const{
+map<string,cell*> cell::fourN() const{
     auto N = this->Neighbors;
     // gestion droit : ne renvoyer que les voisins autorisés et dans 4N et pas tout Neighbors
     // selon this->state et voisins.state, ne garder dans N que ceux autorisés

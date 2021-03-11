@@ -19,6 +19,7 @@
 #include "graph2d.hpp"
 #include "cell.hpp"
 #include "vec2.hpp"
+#include "bfs_algo.hpp"
 
 #include <iostream>
 

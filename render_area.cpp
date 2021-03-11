@@ -11,7 +11,7 @@ render_area::render_area(QWidget *parent)
     this->height = this->size().height();
 
     this->graph_size_select = 1;
-    this->graph_brush_type = states::visited;
+    this->graph_brush_type = states::perfect_path;
     this->graph_brush_size = 1;
 
     vector<int> s = {0,0};
@@ -135,8 +135,9 @@ void render_area::paintEvent(QPaintEvent*)
                 case states::clear :brush.setColor(Qt::white);break;
                 case states::obstacle :brush.setColor(Qt::black);break;
                 case states::start :brush.setColor(QColor(181,230,29,255));break;
-                case states::end :brush.setColor(QColor(250,201,14,255));break;
+                case states::end :brush.setColor(QColor(255,91,91,255));break;
                 case states::visited :brush.setColor(QColor(200,200,200,255));break;
+                case states::perfect_path :brush.setColor(QColor(153,217,234,255));break;
             }
 
             painter.setBrush(brush);
@@ -151,10 +152,21 @@ void render_area::launch_algo(){
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
     std::cout<<"Searching ..."<<std::endl;
 
-    Sleep(this->algo_delay);
+    BFS_algo algo = BFS_algo(this->graph(start_point[0],start_point[1]));
+
+
+    algo.init_algo();
+    algo.next();
+//    while (algo.next()==false) {
+//        repaint();
+//        Sleep(this->algo_delay);
+//    }
+
+
     std::cout<<"End"<<std::endl;
     this->running =false;
     this->setCursor(Qt::CrossCursor);
+    repaint();
 }
 
 void render_area::mouseMoveEvent(QMouseEvent *event)
