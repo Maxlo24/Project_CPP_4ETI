@@ -1,20 +1,20 @@
 #include "cell.hpp"
 
-cell::cell(int etat)
+cell::cell(states etat)
 {
     this->state = etat;
 }
 
 cell::cell()
 {
-    this->state = 0;
+    this->state = states::clear ;
 }
 
-int cell::infos() const{
+states cell::infos() const{
     return this->state;
 }
 
-int& cell::infos(){
+states& cell::infos(){
     return this->state;
 }
 

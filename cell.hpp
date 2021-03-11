@@ -5,21 +5,24 @@
 using std::map;
 using std::string;
 
+enum states {clear , start, end , obstacle , visited};
+
 class cell
 {
 public:
     cell();
-    cell(int etat);
+    cell(states etat);
 
-    int infos() const;
+    states infos() const;
 
     map<string,cell*> fourN() const;
 
 private:
-    int state;
+
+    states state;
     map<string,cell*> Neighbors; // Haut gauche droite bas
 
-    int& infos();
+    states& infos();
     void addNeighbors(string direction, cell* ptrC);
 
     friend class render_area;
