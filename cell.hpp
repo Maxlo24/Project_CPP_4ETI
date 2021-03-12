@@ -17,7 +17,7 @@ public:
 
     map<string,cell*> fourN() const;
 
-private:
+//private:
 
     states state;
     map<string,cell*> Neighbors; // Haut gauche droite bas
@@ -25,7 +25,7 @@ private:
     states& infos();
     void addNeighbors(string direction, cell* ptrC);
 
-    friend class render_area;
+//    friend class render_area;
 };
 
 #endif // CELL_H

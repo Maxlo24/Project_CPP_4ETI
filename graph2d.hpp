@@ -14,7 +14,7 @@ public:
     graph2D(int x, int y);
 
     //Prototypes
-    T operator()(int i, int j) const;
+    const T& operator()(int i, int j) const;
     T& operator()(int i, int j);
 
     vector<int> size() const;
@@ -44,7 +44,7 @@ graph2D<T>::graph2D(int x, int y){
 }
 
 template<typename T>
-T graph2D<T>::operator()(int i, int j) const{
+const T& graph2D<T>::operator()(int i, int j) const{
     if(i<0 || i >= this->width || j<0 || j >= this->height)
         throw std::exception();
     return this->tableau[i][j];
