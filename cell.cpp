@@ -7,14 +7,20 @@ cell::cell(states etat)
 
 cell::cell()
 {
-    this->state = states::clear ;
+    this->state = states::clear;
 }
 
 states cell::infos() const{
+    std::cout << "const const" << std::endl;
     return this->state;
 }
 
-states& cell::infos(){
+states& cell::infos() {
+    //std::cout << "normal" << std::endl;
+    /*if ((this->state != states::clear) && (this->state != states::visited)) {
+        std::cerr << "An algorithm try to cheat" << std::endl;
+        throw;
+    }*/
     return this->state;
 }
 
@@ -25,9 +31,9 @@ void cell::addNeighbors(string direction, cell* ptrC) {
 }
 
 map<string,cell*> cell::fourN() const{
-    // auto N(this->Neighbors);
-    // gestion droit : ne renvoyer que les voisins autorisés et dans 4N et pas tout Neighbors
-    // selon this->state et voisins.state, ne garder dans N que ceux autorisés
-    // SI this->infos() est wall ALORS renvoyer vide
+    if (this->state == states::obstacle) {
+        std::cerr << "An algorithm try to cheat" << std::endl;
+        throw;
+    }
     return this->Neighbors;
 }

@@ -18,6 +18,7 @@ public:
 
     // pure virtual methodes
     virtual bool next()  =0;
+    // TODO interruption
 
 protected:
     cell *startPoint;

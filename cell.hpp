@@ -2,6 +2,7 @@
 #define CELL_H
 #include<map>
 #include<string>
+#include <iostream>
 using std::map;
 using std::string;
 
@@ -13,14 +14,14 @@ public:
     cell();
     cell(states etat);
 
-    //static int ID;
+    //~cell(); // TODO faire les destructeurs et gestion memoire
 
     states infos() const;
     states& infos();
 
     map<string,cell*> fourN() const;
 
-//private:
+private:
 
     states state;
     map<string,cell*> Neighbors; // Haut gauche droite bas
@@ -28,7 +29,7 @@ public:
 
     void addNeighbors(string direction, cell* ptrC);
 
-//    friend class render_area;
+    friend class render_area;
 };
 
 

@@ -130,9 +130,8 @@ void render_area::paintEvent(QPaintEvent*)
     int y = this->graph.size()[1];
 
 
-    for(int i = 0 ; i < x;i++){
-        for(int j = 0; j< y ; j++){
-
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j< y; j++){
             switch (this->graph(i,j).infos()) {
                 case states::clear :brush.setColor(Qt::white);break;
                 case states::obstacle :brush.setColor(Qt::black);break;
@@ -140,6 +139,7 @@ void render_area::paintEvent(QPaintEvent*)
                 case states::end :brush.setColor(QColor(255,91,91,255));break;
                 case states::visited :brush.setColor(QColor(200,200,200,255));break;
                 case states::perfect_path :brush.setColor(QColor(153,217,234,255));break;
+                case states::border :break;
             }
 
             painter.setBrush(brush);
@@ -272,35 +272,35 @@ void render_area::brush_paint_cell(int i, int j, states color){
     switch (brushSize) {
         case 3:
             if(i+2 < this->graph.size()[0])
-                this->graph(i+2,j).infos() = color;
+                this->graph(i+2,j).state = color; // TODO mauvaise pratique
             if(i-2 >= 0)
-                this->graph(i-2,j).infos() = color;
+                this->graph(i-2,j).state = color;
             if(j+2 < this->graph.size()[1])
-                this->graph(i,j+2).infos() = color;
+                this->graph(i,j+2).state = color;
             if(j-2 >= 0)
-                this->graph(i,j-2).infos() = color;
+                this->graph(i,j-2).state = color;
 
             if(i+1 < this->graph.size()[0] && j+1 < this->graph.size()[1])
-                this->graph(i+1,j+1).infos() = color;
+                this->graph(i+1,j+1).state = color;
             if(i-1 >= 0 && j+1 < this->graph.size()[1])
-                this->graph(i-1,j+1).infos() = color;
+                this->graph(i-1,j+1).state = color;
             if(i+1 < this->graph.size()[0] && j-1 >= 0)
-                this->graph(i+1,j-1).infos() = color;
+                this->graph(i+1,j-1).state = color;
             if(i-1 >= 0 && j-1 >= 0)
-                this->graph(i-1,j-1).infos() = color;
-
+                this->graph(i-1,j-1).state = color;
+            [[fallthrough]];
         case 2:
             if(i+1 < this->graph.size()[0])
-                this->graph(i+1,j).infos() = color;
+                this->graph(i+1,j).state = color;
             if(i-1 >= 0)
-                this->graph(i-1,j).infos() = color;
+                this->graph(i-1,j).state = color;
             if(j+1 < this->graph.size()[1])
-                this->graph(i,j+1).infos() = color;
+                this->graph(i,j+1).state = color;
             if(j-1 >= 0)
-                this->graph(i,j-1).infos() = color;
-
+                this->graph(i,j-1).state = color;
+            [[fallthrough]];
         case 1:
-            this->graph(i,j).infos() = color;
+            this->graph(i,j).state = color;
             break;
     }
 }
