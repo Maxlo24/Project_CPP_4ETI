@@ -2,8 +2,11 @@
 #define ALGORITHM_H
 #include "cell.hpp"
 #include <vector>
+#include <queue>
 using std::vector;
+using std::queue;
 
+// Mother class for all algorithm
 class Algorithm
 {
 public:
@@ -19,6 +22,7 @@ public:
 protected:
     cell *startPoint;
     vector<cell*> visitedCell;
+
 };
 
 #endif // ALGORITHM_H
