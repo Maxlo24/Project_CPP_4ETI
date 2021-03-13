@@ -24,13 +24,8 @@ void cell::addNeighbors(string direction, cell* ptrC) {
     }
 }
 
-<<<<<<< Updated upstream
-map<std::string,cell*> cell::fourN() const{
-    auto N = this->Neighbors;
-=======
 map<string,cell*> cell::fourN() const{
     // auto N(this->Neighbors);
->>>>>>> Stashed changes
     // gestion droit : ne renvoyer que les voisins autorisés et dans 4N et pas tout Neighbors
     // selon this->state et voisins.state, ne garder dans N que ceux autorisés
     // SI this->infos() est wall ALORS renvoyer vide

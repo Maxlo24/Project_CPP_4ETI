@@ -7,11 +7,6 @@ using std::vector;
 class Algorithm
 {
 public:
-<<<<<<< Updated upstream
-    Algorithm(cell sp);
-private:
-    cell startPoint;
-=======
 
     //constructor
     Algorithm()=default;
@@ -23,7 +18,6 @@ private:
 
 protected:
     cell *startPoint;
->>>>>>> Stashed changes
     vector<cell*> visitedCell;
 };
 

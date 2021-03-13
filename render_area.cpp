@@ -151,9 +151,6 @@ void render_area::launch_algo(){
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
     std::cout<<"Searching ..."<<std::endl;
 
-<<<<<<< Updated upstream
-    Sleep(this->algo_delay);
-=======
     BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
 
 //    map<string,cell*> neighbors = this->graph(start_point[0],start_point[1]).fourN();
@@ -165,7 +162,6 @@ void render_area::launch_algo(){
     }
 
 
->>>>>>> Stashed changes
     std::cout<<"End"<<std::endl;
     this->running =false;
     this->setCursor(Qt::CrossCursor);
