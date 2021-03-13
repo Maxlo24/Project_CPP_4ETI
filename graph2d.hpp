@@ -49,6 +49,7 @@ graph2D<T>::graph2D(int x, int y){
 
 template<typename T>
 const T& graph2D<T>::operator()(int i, int j) const{
+    std::cout << "const const" << std::endl; // TODO const const
     if(i<0 || i >= this->width || j<0 || j >= this->height)
         throw std::exception();
     return this->tableau[i][j];

@@ -12,18 +12,17 @@ bool BFS_algo::next(){
     cell *currentCell = this->algo_queue.front();
     this->algo_queue.pop();
 
-//    this->currentCell_neighbors = currentCell->fourN();
     map<string,cell*> neighbors = currentCell->fourN();
     for (auto const& [key, val] : neighbors) // C++ 17 !
     {
 
-        if(val->infos()== states::clear){
+        if(val->infos() == states::clear){
             val->parent() = currentCell;
             this->algo_queue.push(val);
             val->infos()= states::visited;
         }
 
-        if(val->infos()== states::end){
+        if(val->infos() == states::end){
             val->parent() = currentCell;
             ret = true;
             perfect_path(val->parent());

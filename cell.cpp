@@ -12,7 +12,7 @@ cell::cell()
 }
 
 states cell::infos() const{
-    std::cout << "const const" << std::endl;
+    std::cout << "const const" << std::endl; // TODO jamais dans getter
     return this->state;
 }
 

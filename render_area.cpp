@@ -98,7 +98,6 @@ void render_area::fillNeighbors() {
             else{
                 this->graph(i,j).addNeighbors("bot", &(this->graph.border()));
             }
-            // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
         }
     }
 }
