@@ -8,6 +8,7 @@ cell::cell(states etat)
 cell::cell()
 {
     this->state = states::clear;
+    this->cell_parent = this;
 }
 
 states cell::infos() const{
@@ -36,4 +37,12 @@ map<string,cell*> cell::fourN() const{
         throw;
     }
     return this->Neighbors;
+}
+
+const cell* cell::parent() const{
+    return this->cell_parent;
+}
+
+cell*& cell::parent(){
+    return this->cell_parent;
 }

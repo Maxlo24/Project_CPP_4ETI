@@ -30,7 +30,6 @@ render_area::~render_area()
 
 }
 
-
 void render_area::init_fig()
 {
     std::cout<<"Init graph ..."<<std::endl;
@@ -211,7 +210,7 @@ void render_area::update_grid_size(int i){
 }
 
 void render_area::update_algo_speed(int speed){
-    this->algo_delay = 200*speed;
+    this->algo_delay = 10*speed;
     if(speed==1){
         this->algo_delay = 0;
     }
