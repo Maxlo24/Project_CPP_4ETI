@@ -11,7 +11,7 @@ render_area::render_area(QWidget *parent)
     this->height = this->size().height();
 
     this->graph_size_select = 1;
-    this->graph_brush_type = states::perfect_path;
+    this->graph_brush_type = states::obstacle;
     this->graph_brush_size = 1;
 
     vector<int> s = {0,0};

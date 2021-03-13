@@ -60,7 +60,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Algorithmes d’explorations</string>
+     <string>Exploration algorithms</string>
     </property>
    </widget>
    <widget class="QPushButton" name="serchButton">
@@ -73,7 +73,7 @@ color: rgb(43, 43, 43);</string>
      </rect>
     </property>
     <property name="text">
-     <string>Chercher</string>
+     <string>Search</string>
     </property>
    </widget>
    <widget class="QComboBox" name="Algo_select">
@@ -126,7 +126,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Creation de l'environnement</string>
+     <string>Environement creation</string>
     </property>
    </widget>
    <widget class="QSlider" name="speedSlider">
@@ -212,7 +212,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Taille du pinceau</string>
+     <string>Brush size</string>
     </property>
    </widget>
    <widget class="QPushButton" name="cityButton">
@@ -225,7 +225,7 @@ color: rgb(43, 43, 43);</string>
      </rect>
     </property>
     <property name="text">
-     <string>Generer une ville</string>
+     <string>Generate maze</string>
     </property>
    </widget>
    <widget class="QLabel" name="Partie_Env_2">
@@ -288,7 +288,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Nombre de cycle</string>
+     <string>Cycle number</string>
     </property>
    </widget>
    <widget class="QPushButton" name="resetButton">
@@ -309,7 +309,7 @@ color: rgb(43, 43, 43);</string>
      <rect>
       <x>20</x>
       <y>510</y>
-      <width>121</width>
+      <width>81</width>
       <height>21</height>
      </rect>
     </property>
@@ -320,15 +320,15 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Taille de la grille :</string>
+     <string>Grid size</string>
     </property>
    </widget>
    <widget class="QSlider" name="gridSideSlider">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>119</x>
       <y>510</y>
-      <width>160</width>
+      <width>181</width>
       <height>21</height>
      </rect>
     </property>
@@ -363,7 +363,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Dessiner : click gauche</string>
+     <string>Draw : Left click</string>
     </property>
    </widget>
    <widget class="QLabel" name="taillePinceauLabel_3">
@@ -381,7 +381,7 @@ color: rgb(43, 43, 43);</string>
      </font>
     </property>
     <property name="text">
-     <string>Effacer   : click droit</string>
+     <string>Erase : Right click</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="BrushgroupBox">
