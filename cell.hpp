@@ -20,13 +20,18 @@ public:
 
     map<string,cell*> fourN() const;
 
-//private:
+    void addNeighbors(string direction, cell* ptrC);
+
+    const cell* parent() const;
+    cell*& parent();
+
+private:
 
     states state;
     map<string,cell*> Neighbors; // Haut gauche droite bas
 
+    cell *cell_parent;
 
-    void addNeighbors(string direction, cell* ptrC);
 
 //    friend class render_area;
 };
