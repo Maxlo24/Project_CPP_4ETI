@@ -106,4 +106,7 @@ private: //attributes
     bool is_right_clicked;
 
 };
+
+
+
 #endif // RENDER_AREA_HPP

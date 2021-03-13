@@ -17,12 +17,16 @@ public:
     const T& operator()(int i, int j) const;
     T& operator()(int i, int j);
 
+    const T& border() const;
+    T& border();
+
     vector<int> size() const;
 
 private:
    int width;
    int height;
    vector<vector<T>> tableau;
+   T graph_border;
 
 };
 
@@ -56,6 +60,19 @@ T& graph2D<T>::operator()(int i, int j){
         throw std::exception();
     return this->tableau[i][j];
 }
+
+template<typename T>
+const T& graph2D<T>::border() const{
+    return this->graph_border;
+}
+
+template<typename T>
+T& graph2D<T>::border(){
+    return this->graph_border;
+}
+
+
+
 template<typename T>
 vector<int> graph2D<T>::size() const{
     vector<int> vec = {this->width,this->height };

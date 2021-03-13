@@ -51,6 +51,8 @@ void render_area::init_fig()
                 this->graph = graph2D<cell>(80,60);
                 break;
     }
+    cell border_cell = cell(states::border);
+    this->graph.border() = border_cell;
 
     this->fillNeighbors();
 
@@ -77,25 +79,25 @@ void render_area::fillNeighbors() {
                 this->graph(i,j).addNeighbors("top", &(this->graph(i,j-1)));
             }
             else{
-                this->graph(i,j).addNeighbors("top", NULL);
+                this->graph(i,j).addNeighbors("top", &(this->graph.border()));
             }
             if (i != 0) {
                 this->graph(i,j).addNeighbors("left", &(this->graph(i-1,j)));
             }
             else{
-                this->graph(i,j).addNeighbors("left", NULL);
+                this->graph(i,j).addNeighbors("left", &(this->graph.border()));
             }
             if (i != x-1) {
                 this->graph(i,j).addNeighbors("right", &(this->graph(i+1,j)));
             }
             else{
-                this->graph(i,j).addNeighbors("right", NULL);
+                this->graph(i,j).addNeighbors("right", &(this->graph.border()));
             }
             if (j != y-1) {
                 this->graph(i,j).addNeighbors("bot", &(this->graph(i,j+1)));
             }
             else{
-                this->graph(i,j).addNeighbors("bot", NULL);
+                this->graph(i,j).addNeighbors("bot", &(this->graph.border()));
             }
             // TODO eventuellement reflechir à map pour graph car sinon mémoire contigue.
         }
@@ -152,15 +154,18 @@ void render_area::launch_algo(){
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
     std::cout<<"Searching ..."<<std::endl;
 
-    BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
+    switch (this->algo_select) {
+        case 0:
+            BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
+            while (algo.next()==false) {
+                repaint();
+                Sleep(this->algo_delay);
+            }
+            break;
 
-//    map<string,cell*> neighbors = this->graph(start_point[0],start_point[1]).fourN();
-
-    algo.next();
-    while (algo.next()==false) {
-        repaint();
-        Sleep(this->algo_delay);
     }
+
+
 
 
     std::cout<<"End"<<std::endl;

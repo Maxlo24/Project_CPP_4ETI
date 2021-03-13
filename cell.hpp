@@ -5,7 +5,7 @@
 using std::map;
 using std::string;
 
-enum states {clear , start, end , obstacle , visited, perfect_path};
+enum states {clear , start, end , obstacle , visited, perfect_path, border};
 
 class cell
 {
@@ -30,5 +30,7 @@ public:
 
 //    friend class render_area;
 };
+
+
 
 #endif // CELL_H
