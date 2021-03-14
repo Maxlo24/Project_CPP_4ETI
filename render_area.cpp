@@ -124,7 +124,8 @@ void render_area::paintEvent(QPaintEvent*)
     int x = this->graph.size()[0];
     int y = this->graph.size()[1];
 
-    //std::cout << this->graph(2,2).infos() << std::endl;
+    //const auto& aaaa = this->graph(2,2).infos();
+    //std::cout << aaaa << std::endl;
 
     for(int i = 0; i < x; i++){
         for(int j = 0; j< y; j++){
