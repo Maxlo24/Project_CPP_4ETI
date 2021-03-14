@@ -19,7 +19,7 @@ bool BFS_algo::next(){
         if(val->infos() == states::clear){
             val->parent() = currentCell;
             this->algo_queue.push(val);
-            val->infos()= states::visited;
+            val->infos() = states::visited;
         }
 
         if(val->infos() == states::end){

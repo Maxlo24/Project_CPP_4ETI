@@ -17,7 +17,6 @@ states cell::infos() const{
 }
 
 states& cell::infos() {
-    //std::cout << "normal" << std::endl;
     /*if ((this->state != states::clear) && (this->state != states::visited)) {
         std::cerr << "An algorithm try to cheat" << std::endl;
         throw;
@@ -45,4 +44,8 @@ const cell* cell::parent() const{
 
 cell*& cell::parent(){
     return this->cell_parent;
+}
+
+states& cell::type() {
+    return this->state;
 }

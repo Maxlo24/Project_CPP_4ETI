@@ -15,7 +15,6 @@ public:
 
 private :
     queue<cell*> algo_queue;
-//    map<string,cell*> currentCell_neighbors;
     void perfect_path(cell *last);
 };
 

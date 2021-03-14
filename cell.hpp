@@ -31,9 +31,9 @@ private:
 
     cell *cell_parent;
 
-    void addNeighbors(string direction, cell* ptrC);
-
     friend class render_area;
+    states& type();
+    void addNeighbors(string direction, cell* ptrC);
 };
 
 
