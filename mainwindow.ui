@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>903</width>
-    <height>602</height>
+    <height>619</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -310,7 +310,7 @@ color: rgb(43, 43, 43);</string>
       <x>20</x>
       <y>510</y>
       <width>81</width>
-      <height>21</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="font">
@@ -329,7 +329,7 @@ color: rgb(43, 43, 43);</string>
       <x>119</x>
       <y>510</y>
       <width>181</width>
-      <height>21</height>
+      <height>50</height>
      </rect>
     </property>
     <property name="minimum">
@@ -390,11 +390,11 @@ color: rgb(43, 43, 43);</string>
       <x>330</x>
       <y>500</y>
       <width>301</width>
-      <height>51</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="title">
-     <string>Brush</string>
+     <string>Brush type</string>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -428,14 +428,71 @@ color: rgb(43, 43, 43);</string>
     <widget class="QRadioButton" name="EndradioButton">
      <property name="geometry">
       <rect>
-       <x>210</x>
+       <x>220</x>
        <y>20</y>
-       <width>84</width>
+       <width>61</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
       <string>End</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="Obstacleframe">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>40</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="Obstacleframe_2">
+     <property name="geometry">
+      <rect>
+       <x>109</x>
+       <y>40</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(181,230,29);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="Obstacleframe_3">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>40</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255,91,91);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
     </widget>
    </widget>
@@ -446,7 +503,7 @@ color: rgb(43, 43, 43);</string>
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

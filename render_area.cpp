@@ -14,9 +14,6 @@ render_area::render_area(QWidget *parent)
     this->graph_brush_type = states::obstacle;
     this->graph_brush_size = 1;
 
-    vector<int> s = {0,0};
-    this->start_point = s;
-    this->end_point = s;
 
     this->running = false;
     this->algo_select = 0;
@@ -34,7 +31,9 @@ void render_area::init_fig()
 {
     std::cout<<"Init graph ..."<<std::endl;
 
-
+    vector<int> s = {0,0};
+    this->start_point = s;
+    this->end_point = s;
 
     switch (this->graph_size_select) {
         case 1:
