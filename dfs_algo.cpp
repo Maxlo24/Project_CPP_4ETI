@@ -13,7 +13,7 @@ bool DFS_algo::next(){
     this->algo_stack.pop();
 
     if(currentCell->infos() == states::clear){
-        currentCell->setInfos() = states::visited;
+        currentCell->setInfos(states::visited);
     }
 
     map<string,cell*> neighbors = currentCell->fourN();
@@ -43,7 +43,7 @@ void DFS_algo::perfect_path(cell *last){
     cell *actual_cell = last;
 
     while (actual_cell->infos() != states::start) {
-        actual_cell->setInfos() = states::perfect_path;
+        actual_cell->setInfos(states::perfect_path);
         actual_cell = actual_cell->parent();
     }
 }

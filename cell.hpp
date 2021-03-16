@@ -17,7 +17,7 @@ public:
     //~cell(); // TODO faire les destructeurs et gestion memoire
 
     states infos() const;
-    states& setInfos();
+    void setInfos(states s);
 
     map<string,cell*> fourN() const;
 

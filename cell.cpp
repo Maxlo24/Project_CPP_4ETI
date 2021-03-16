@@ -15,12 +15,16 @@ states cell::infos() const{
     return this->state;
 }
 
-states& cell::setInfos() {
+void cell::setInfos(states s) {
     if ((this->state != states::clear) && (this->state != states::visited)) {
         std::cerr << "An algorithm try to cheat" << std::endl;
         throw;
     }
-    return this->state;
+    if ((s != states::visited) && (s != states::perfect_path)) {
+        std::cerr << "Invalid set argument" << std::endl;
+        throw;
+    }
+    this->state = s;
 }
 
 void cell::addNeighbors(string direction, cell* ptrC) {
