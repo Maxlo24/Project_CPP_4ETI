@@ -1,16 +1,20 @@
-#include "bfs_algo.hpp"
+#include "dfs_algo.hpp"
 
-BFS_algo::BFS_algo(cell *startPoint) :Algorithm(startPoint)
+DFS_algo::DFS_algo(cell *startPoint) :Algorithm(startPoint)
 {
-    this->algo_queue.push(this->startPoint);
+    this->algo_stack.push(this->startPoint);
 }
 
 
-bool BFS_algo::next(){
+bool DFS_algo::next(){
     bool ret = false;
 
-    cell *currentCell = this->algo_queue.front();
-    this->algo_queue.pop();
+    cell *currentCell = this->algo_stack.top();
+    this->algo_stack.pop();
+
+    if(currentCell->infos() == states::clear){
+        currentCell->setInfos() = states::visited;
+    }
 
     map<string,cell*> neighbors = currentCell->fourN();
     for (auto const& [key, val] : neighbors) // C++ 17 !
@@ -18,8 +22,7 @@ bool BFS_algo::next(){
 
         if(val->infos() == states::clear){
             val->parent() = currentCell;
-            this->algo_queue.push(val);
-            val->setInfos() = states::visited;
+            this->algo_stack.push(val);
         }
 
         if(val->infos() == states::end){
@@ -29,13 +32,13 @@ bool BFS_algo::next(){
         }
 
     }
-    if(this->algo_queue.size()==0)
+    if(this->algo_stack.size()==0)
         ret = true;
 
     return ret;
 }
 
-void BFS_algo::perfect_path(cell *last){
+void DFS_algo::perfect_path(cell *last){
 
     cell *actual_cell = last;
 

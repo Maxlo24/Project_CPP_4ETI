@@ -20,6 +20,7 @@
 #include "cell.hpp"
 #include "vec2.hpp"
 #include "bfs_algo.hpp"
+#include "dfs_algo.hpp"
 
 #include <iostream>
 
@@ -68,6 +69,7 @@ private slots:
     void update_algo_speed(int speed);
     void reset_grid();
     void launch_algo();
+    void generateMaze();
 
 
 private: //attributes
@@ -78,6 +80,7 @@ private: //attributes
     int height;
 
     void fillNeighbors();
+    void cleanGrid();
 
     vector<int> start_point;
     vector<int> end_point;
