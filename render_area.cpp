@@ -151,18 +151,16 @@ void render_area::launch_algo(){
     std::cout<<"Searching ..."<<std::endl;
 
     switch (this->algo_select) {
-        case 0:
+        case 0:{
             BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo.next()==false) {
                 repaint();
                 Sleep(this->algo_delay);
             }
+            break;}
+        case 1:
             break;
-
     }
-
-
-
 
     std::cout<<"End"<<std::endl;
     this->running =false;
@@ -173,7 +171,6 @@ void render_area::launch_algo(){
 void render_area::mouseMoveEvent(QMouseEvent *event)
 {
     mouse_point=vec2(event->x(),event->y());
-
     paint();
     repaint();
 }
