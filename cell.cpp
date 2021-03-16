@@ -12,15 +12,14 @@ cell::cell()
 }
 
 states cell::infos() const{
-    std::cout << "const const" << std::endl; // TODO jamais dans getter
     return this->state;
 }
 
-states& cell::infos() {
-    /*if ((this->state != states::clear) && (this->state != states::visited)) {
+states& cell::setInfos() {
+    if ((this->state != states::clear) && (this->state != states::visited)) {
         std::cerr << "An algorithm try to cheat" << std::endl;
         throw;
-    }*/
+    }
     return this->state;
 }
 

@@ -143,8 +143,7 @@ void render_area::paintEvent(QPaintEvent*)
 
 void render_area::generateMaze()
 { // TODO generate maze (and counter)
-    const auto& aaaa = this->graph(2,2).infos();
-    std::cout << aaaa << std::endl;
+    std::cout << graph(2,2).infos() << std::endl;
 }
 
 void render_area::cleanGrid() {
@@ -154,7 +153,7 @@ void render_area::cleanGrid() {
     for(int i = 0; i < x; i++){
             for(int j = 0; j< y; j++){
                 if(this->graph(i,j).infos() == states::visited || this->graph(i,j).infos() == states::perfect_path){
-                   this->graph(i,j).infos()  = states::clear;
+                   this->graph(i,j).type()  = states::clear;
                 }
             }
         }

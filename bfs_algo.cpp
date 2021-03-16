@@ -19,7 +19,7 @@ bool BFS_algo::next(){
         if(val->infos() == states::clear){
             val->parent() = currentCell;
             this->algo_queue.push(val);
-            val->infos() = states::visited;
+            val->setInfos() = states::visited;
         }
 
         if(val->infos() == states::end){
@@ -40,7 +40,7 @@ void BFS_algo::perfect_path(cell *last){
     cell *actual_cell = last;
 
     while (actual_cell->infos() != states::start) {
-        actual_cell->infos() = states::perfect_path;
+        actual_cell->setInfos() = states::perfect_path;
         actual_cell = actual_cell->parent();
     }
 }

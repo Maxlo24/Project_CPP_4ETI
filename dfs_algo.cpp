@@ -13,7 +13,7 @@ bool DFS_algo::next(){
     this->algo_stack.pop();
 
     if(currentCell->infos() == states::clear){
-        currentCell->infos() = states::visited;
+        currentCell->setInfos() = states::visited;
     }
 
     map<string,cell*> neighbors = currentCell->fourN();
@@ -25,7 +25,7 @@ bool DFS_algo::next(){
             this->algo_stack.push(val);
         }
 
-        if(val->infos() == states::end){ // TODO pas rigoureusement profond mais gagne énormement de temps et ne casse pas gravement l'algorithme
+        if(val->infos() == states::end){
             val->parent() = currentCell;
             ret = true;
             perfect_path(val->parent());
@@ -43,7 +43,7 @@ void DFS_algo::perfect_path(cell *last){
     cell *actual_cell = last;
 
     while (actual_cell->infos() != states::start) {
-        actual_cell->infos() = states::perfect_path;
+        actual_cell->setInfos() = states::perfect_path;
         actual_cell = actual_cell->parent();
     }
 }

@@ -17,7 +17,7 @@ public:
     //~cell(); // TODO faire les destructeurs et gestion memoire
 
     states infos() const;
-    states& infos();
+    states& setInfos();
 
     map<string,cell*> fourN() const;
 
@@ -27,7 +27,7 @@ public:
 private:
 
     states state;
-    map<string,cell*> Neighbors; // Haut gauche droite bas
+    map<string,cell*> Neighbors; // Haut droite gauche bas
 
     cell *cell_parent;
 
