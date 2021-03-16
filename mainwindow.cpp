@@ -21,11 +21,13 @@ MainWindow::MainWindow(QWidget *parent)
     //button reset
     connect(ui->resetButton,SIGNAL(clicked()), this->render, SLOT(reset_grid()));
     //button search
-    connect(ui->serchButton,SIGNAL(clicked()), this->render, SLOT(launch_algo()));
+    connect(ui->searchButton,SIGNAL(clicked()), this->render, SLOT(launch_algo()));
     //algo select
     connect(ui->Algo_select,SIGNAL(activated(int)), this->render, SLOT(update_algo_select(int)));
     //Slider speed
     connect(ui->speedSlider,SIGNAL(valueChanged(int)), this->render, SLOT(update_algo_speed(int)));
+    //button Generate Maze
+    connect(ui->mazeButton,SIGNAL(clicked()), this->render, SLOT(generateMaze()));
 
     //Set obstacle readioButton
     ui->ObstacleradioButton->setChecked(true);

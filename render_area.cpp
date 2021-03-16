@@ -123,12 +123,9 @@ void render_area::paintEvent(QPaintEvent*)
     int x = this->graph.size()[0];
     int y = this->graph.size()[1];
 
-    //const auto& aaaa = this->graph(2,2).infos();
-    //std::cout << aaaa << std::endl;
-
     for(int i = 0; i < x; i++){
         for(int j = 0; j< y; j++){
-            switch (this->graph(i,j).type()) {
+            switch (this->graph(i,j).infos()) {
                 case states::clear :brush.setColor(Qt::white);break;
                 case states::obstacle :brush.setColor(Qt::black);break;
                 case states::start :brush.setColor(QColor(181,230,29,255));break;
@@ -144,7 +141,29 @@ void render_area::paintEvent(QPaintEvent*)
     }
 }
 
+void render_area::generateMaze()
+{ // TODO generate maze (and counter)
+    const auto& aaaa = this->graph(2,2).infos();
+    std::cout << aaaa << std::endl;
+}
+
+void render_area::cleanGrid() {
+    int x = this->graph.size()[0];
+    int y = this->graph.size()[1];
+
+    for(int i = 0; i < x; i++){
+            for(int j = 0; j< y; j++){
+                if(this->graph(i,j).infos() == states::visited || this->graph(i,j).infos() == states::perfect_path){
+                   this->graph(i,j).infos()  = states::clear;
+                }
+            }
+        }
+    repaint();
+}
+
 void render_area::launch_algo(){
+    this->cleanGrid();
+
     this->running = true;
     this->setCursor(Qt::ForbiddenCursor);
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
@@ -152,20 +171,30 @@ void render_area::launch_algo(){
 
     switch (this->algo_select) {
         case 0:
+            {
             BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo.next()==false) {
                 repaint();
                 Sleep(this->algo_delay);
             }
             break;
-
+            }
+        case 1:
+            {
+            DFS_algo algo2 = DFS_algo(&(this->graph(start_point[0],start_point[1])));
+            while (algo2.next()==false) {
+                repaint();
+                Sleep(this->algo_delay);
+            }
+            break;
+            }
     }
 
 
 
 
     std::cout<<"End"<<std::endl;
-    this->running =false;
+    this->running = false;
     this->setCursor(Qt::CrossCursor);
     repaint();
 }

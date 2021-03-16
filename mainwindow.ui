@@ -17,7 +17,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(217, 217, 217);
+   <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(43, 43, 43);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -29,6 +29,11 @@ color: rgb(43, 43, 43);</string>
       <width>191</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border: 1px solid grey;}
+QPushButton::pressed{border: 1px solid blue;color: blue;};
+</string>
     </property>
     <property name="text">
      <string>Quitter</string>
@@ -63,7 +68,7 @@ color: rgb(43, 43, 43);</string>
      <string>Exploration algorithms</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="serchButton">
+   <widget class="QPushButton" name="searchButton">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -72,8 +77,16 @@ color: rgb(43, 43, 43);</string>
       <height>25</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border: 1px solid grey;}
+QPushButton::pressed{border: 1px solid blue;color: blue;};
+</string>
+    </property>
     <property name="text">
      <string>Search</string>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QComboBox" name="Algo_select">
@@ -84,6 +97,9 @@ color: rgb(43, 43, 43);</string>
       <width>191</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid grey;</string>
     </property>
     <item>
      <property name="text">
@@ -215,7 +231,7 @@ color: rgb(43, 43, 43);</string>
      <string>Brush size</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="cityButton">
+   <widget class="QPushButton" name="mazeButton">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -223,6 +239,11 @@ color: rgb(43, 43, 43);</string>
       <width>191</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border: 1px solid grey;}
+QPushButton::pressed{border: 1px solid blue;color: blue;};
+</string>
     </property>
     <property name="text">
      <string>Generate maze</string>
@@ -266,7 +287,7 @@ color: rgb(43, 43, 43);</string>
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(141, 141, 141);</string>
+     <string notr="true"/>
     </property>
     <property name="value" stdset="0">
      <double>10000.000000000000000</double>
@@ -299,6 +320,11 @@ color: rgb(43, 43, 43);</string>
       <width>191</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border: 1px solid grey;}
+QPushButton::pressed{border: 1px solid blue;color: blue;};
+</string>
     </property>
     <property name="text">
      <string>Reset</string>
@@ -496,6 +522,42 @@ color: rgb(43, 43, 43);</string>
      </property>
     </widget>
    </widget>
+   <widget class="QFrame" name="verticalFrame_2">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>643</width>
+      <height>483</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(217, 217, 217);
+color: rgb(43, 43, 43);</string>
+    </property>
+    <layout class="QVBoxLayout" name="main_Layout_2"/>
+   </widget>
+   <zorder>verticalFrame_2</zorder>
+   <zorder>quitButton</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>Partie_Algo</zorder>
+   <zorder>searchButton</zorder>
+   <zorder>Algo_select</zorder>
+   <zorder>Partie_Env</zorder>
+   <zorder>speedSlider</zorder>
+   <zorder>Partie_Algo_2</zorder>
+   <zorder>brush_Size_Slider</zorder>
+   <zorder>taillePinceauLabel</zorder>
+   <zorder>mazeButton</zorder>
+   <zorder>Partie_Env_2</zorder>
+   <zorder>cycleNumber</zorder>
+   <zorder>Partie_Algo_4</zorder>
+   <zorder>resetButton</zorder>
+   <zorder>tailleGrilleLabel</zorder>
+   <zorder>gridSideSlider</zorder>
+   <zorder>taillePinceauLabel_2</zorder>
+   <zorder>taillePinceauLabel_3</zorder>
+   <zorder>BrushgroupBox</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -503,7 +565,7 @@ color: rgb(43, 43, 43);</string>
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>25</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
