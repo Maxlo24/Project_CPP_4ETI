@@ -21,6 +21,7 @@
 #include "vec2.hpp"
 #include "bfs_algo.hpp"
 #include "dfs_algo.hpp"
+#include "dijkstra_algo.hpp"
 
 #include <iostream>
 

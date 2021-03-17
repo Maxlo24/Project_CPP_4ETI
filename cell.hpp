@@ -16,6 +16,9 @@ public:
 
     //~cell(); // TODO faire les destructeurs et gestion memoire
 
+    int id() const;
+    void setId(int id);
+
     states infos() const;
     void setInfos(states s);
 
@@ -25,7 +28,7 @@ public:
     cell*& parent();
 
 private:
-
+    int ID;
     states state;
     map<string,cell*> Neighbors; // Haut droite gauche bas
 
