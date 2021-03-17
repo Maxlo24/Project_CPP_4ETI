@@ -3,10 +3,6 @@
 render_area::render_area(QWidget *parent)
     :QWidget(parent),point_sets(),mouse_point(),is_left_clicked(),is_right_clicked()
 {
-    //std::cout<<parent->size().width()<<" "<<parent->size().height();
-    //setBackgroundRole(QPalette::Base);
-    //setAutoFillBackground(true);
-
     this->width = this->size().width();
     this->height = this->size().height();
 
@@ -142,8 +138,8 @@ void render_area::paintEvent(QPaintEvent*)
 }
 
 void render_area::generateMaze()
-{ // TODO generate maze (and counter)
-    std::cout << graph(2,2).infos() << std::endl;
+{
+    // TODO generate maze (and counter cycle and interruption)
 }
 
 void render_area::cleanGrid() {
@@ -184,6 +180,18 @@ void render_area::launch_algo(){
             while (algo2.next()==false) {
                 repaint();
                 Sleep(this->algo_delay);
+            }
+            std::cout << algo2.relEnd()[0] << " " << algo2.relEnd()[1] << std::endl;
+            if((algo2.relEnd()[0] != 0) || (algo2.relEnd()[1] != 0)) {
+                repaint();
+                Sleep(2000);
+                this->cleanGrid(); // TODO enlever
+                std::cout << "A* : " << std::endl;
+                ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
+                while (algo2b.next()==false) {
+                    repaint();
+                    Sleep(this->algo_delay);
+                }
             }
             break;
             }
@@ -231,10 +239,7 @@ void render_area::update_grid_size(int i){
 }
 
 void render_area::update_algo_speed(int speed){
-    this->algo_delay = 10*speed;
-    if(speed==1){
-        this->algo_delay = 0;
-    }
+    this->algo_delay = 40*(speed-1);
     std::cout<<"Algo delay : "<<this->algo_delay<<std::endl;
 }
 
