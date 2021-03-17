@@ -195,6 +195,14 @@ void render_area::launch_algo(){
             }
             break;
             }
+        case 2:{
+            Dijkstra_algo algo = Dijkstra_algo(&(this->graph(start_point[0],start_point[1])));
+            while (algo.next()==false) {
+                repaint();
+                Sleep(this->algo_delay);
+            }
+            break;
+        }
     }
 
     std::cout<<"End"<<std::endl;

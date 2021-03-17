@@ -11,6 +11,14 @@ cell::cell()
     this->cell_parent = this;
 }
 
+int cell::id() const{
+    return this->ID;
+}
+
+void cell::setId(int id){
+    this->ID = id;
+}
+
 states cell::infos() const{
     return this->state;
 }
