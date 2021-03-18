@@ -1,7 +1,6 @@
 #ifndef RENDER_AREA_HPP
 #define RENDER_AREA_HPP
 
-
 #include <QWidget>
 #include <QTimer>
 #include <QTime>
@@ -11,10 +10,11 @@
 #include <QStyle>
 #include <QCursor>
 
-
 #include <list>
 #include <vector>
 #include <windows.h>
+#include <stdlib.h>
+#include <iostream>
 
 #include "graph2d.hpp"
 #include "cell.hpp"
@@ -22,9 +22,7 @@
 #include "bfs_algo.hpp"
 #include "dfs_algo.hpp"
 #include "dijkstra_algo.hpp"
-
-#include <iostream>
-
+#include "maze_generator.hpp"
 
 using std::vector;
 

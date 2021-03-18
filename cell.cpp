@@ -42,10 +42,10 @@ void cell::addNeighbors(string direction, cell* ptrC) {
 }
 
 map<string,cell*> cell::fourN() const{
-    if (this->state == states::obstacle) {
-        std::cerr << "An algorithm try to cheat" << std::endl;
-        throw;
-    }
+//    if (this->state == states::obstacle) {
+//        std::cerr << "An algorithm try to cheat" << std::endl;
+//        throw;
+//    }
     return this->Neighbors;
 }
 

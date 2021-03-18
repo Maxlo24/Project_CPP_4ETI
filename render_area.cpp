@@ -33,7 +33,6 @@ void render_area::init_fig()
 
     vector<int> s = {0,0};
     this->start_point = s;
-    this->end_point = s;
 
     switch (this->graph_size_select) {
         case 1:
@@ -51,15 +50,17 @@ void render_area::init_fig()
     }
     cell border_cell = cell(states::border);
     this->graph.border() = border_cell;
-
-    this->fillNeighbors();
-
     std::cout<<"Taille de la grille : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
 
 
     this->dx = this->width / this->graph.size()[0];
     this->dy = this->height / this->graph.size()[1];
 
+    this->graph(0,0).type() = states::start;
+    this->graph(graph.size()[0]-1,graph.size()[1]-1) = states::end;
+    this->end_point = {graph.size()[0]-1,graph.size()[1]-1};
+
+    this->fillNeighbors();
 
     this->setCursor(Qt::CrossCursor);
 
@@ -99,6 +100,13 @@ void render_area::fillNeighbors() {
             }
         }
     }
+
+//    map<string,cell*> neighbors = this->graph(x-1,y-1).fourN();
+//    std::cout<<neighbors["left"]->Neighbors["right"]->state<<std::endl;
+//    for (auto const& [key, val] : neighbors) // C++ 17 !
+//    {
+//        std::cout<<key<<" "<<val->state<<std::endl;
+//    }
 }
 
 
@@ -143,20 +151,41 @@ void render_area::paintEvent(QPaintEvent*)
 
 void render_area::generateMaze()
 { // TODO generate maze (and counter)
-    std::cout << graph(2,2).infos() << std::endl;
+    int x_size = this->graph.size()[0];
+    int y_size = this->graph.size()[1];
+    for(int i = 0; i < x_size; i++){
+        for(int j = 0; j< y_size; j++){
+            this->graph(i,j).type()  = states::obstacle;
+        }
+    }
+    int x_rand = rand() %x_size;
+    int y_rand = rand() %y_size;
+
+//    x_rand = 11;
+//    y_rand = 7;
+
+
+    std::cout<<x_rand<<" ; "<<y_rand<<std::endl;
+
+    this->graph(x_rand,y_rand).type() = states::start;
+    this->start_point = {x_rand,y_rand};
+    maze_generator maze = maze_generator(&(this->graph(start_point[0],start_point[1])));
+    maze.generate();
+
+    repaint();
 }
 
 void render_area::cleanGrid() {
-    int x = this->graph.size()[0];
-    int y = this->graph.size()[1];
+    int x_size = this->graph.size()[0];
+    int y_size = this->graph.size()[1];
 
-    for(int i = 0; i < x; i++){
-            for(int j = 0; j< y; j++){
-                if(this->graph(i,j).infos() == states::visited || this->graph(i,j).infos() == states::perfect_path){
-                   this->graph(i,j).type()  = states::clear;
-                }
+    for(int i = 0; i < x_size; i++){
+        for(int j = 0; j< y_size; j++){
+            if(this->graph(i,j).infos() == states::visited || this->graph(i,j).infos() == states::perfect_path){
+               this->graph(i,j).type()  = states::clear;
             }
         }
+    }
     repaint();
 }
 
