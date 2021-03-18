@@ -116,11 +116,6 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
       <string>Algorithme de Dijkstra</string>
      </property>
     </item>
-    <item>
-     <property name="text">
-      <string>Exploration par colonie de fourmis</string>
-     </property>
-    </item>
    </widget>
    <widget class="QLabel" name="Partie_Env">
     <property name="geometry">

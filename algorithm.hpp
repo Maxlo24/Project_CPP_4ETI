@@ -9,6 +9,12 @@ using std::queue;
 using std::stack;
 using std::priority_queue;
 
+struct Compare {
+  bool operator()(cell*a,cell*b) {
+      return a->id() > b->id();
+  }
+};
+
 // Mother class for all algorithm
 class Algorithm
 {

@@ -4,12 +4,6 @@
 #include <iostream>
 #include <vector>
 
-struct Compare {
-  bool operator()(cell*a,cell*b) {
-      return a->id() > b->id();
-  }
-};
-
 class Dijkstra_algo : public Algorithm
 {
 public:

@@ -96,13 +96,6 @@ void render_area::fillNeighbors() {
             }
         }
     }
-
-//    map<string,cell*> neighbors = this->graph(x-1,y-1).fourN();
-//    std::cout<<neighbors["left"]->Neighbors["right"]->state<<std::endl;
-//    for (auto const& [key, val] : neighbors) // C++ 17 !
-//    {
-//        std::cout<<key<<" "<<val->state<<std::endl;
-//    }
 }
 
 
@@ -136,7 +129,7 @@ void render_area::paintEvent(QPaintEvent*)
                 case states::end :brush.setColor(QColor(255,91,91,255));break;
                 case states::visited :brush.setColor(QColor(200,200,200,255));break;
                 case states::perfect_path :brush.setColor(QColor(153,217,234,255));break;
-                case states::border :break;
+                default :break;
             }
 
             painter.setBrush(brush);
@@ -144,9 +137,9 @@ void render_area::paintEvent(QPaintEvent*)
         }
     }
 }
-
+// TODO counter
 void render_area::generateMaze()
-{ // TODO generate maze (and counter)
+{
     int x_size = this->graph.size()[0];
     int y_size = this->graph.size()[1];
     for(int i = 0; i < x_size; i++){
@@ -157,16 +150,20 @@ void render_area::generateMaze()
     int x_rand = rand() %x_size;
     int y_rand = rand() %y_size;
 
-//    x_rand = 11;
-//    y_rand = 7;
-
-
-    std::cout<<x_rand<<" ; "<<y_rand<<std::endl;
-
     this->graph(x_rand,y_rand).type() = states::start;
     this->start_point = {x_rand,y_rand};
     maze_generator maze = maze_generator(&(this->graph(start_point[0],start_point[1])));
     maze.generate();
+
+    for(int i = 1; i < x_size-1; i++){
+        for(int j = 1; j< y_size-1; j++){
+
+            if (rand()%15<1) {
+                this->graph(i,j).type()  = states::clear;
+            }
+
+        }
+    }
 
     repaint();
 }
@@ -217,9 +214,17 @@ void render_area::launch_algo(){
                 this->cleanGrid(); // TODO enlever
                 std::cout << "A* : " << std::endl;
                 ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
+                //
                 while (algo2b.next()==false) {
                     repaint();
                     Sleep(this->algo_delay);
+                }
+            }//
+            int x_size = this->graph.size()[0];
+            int y_size = this->graph.size()[1];
+            for(int i = 0; i < x_size; i++){
+                for(int j = 0; j< y_size; j++){
+                    this->graph(i,j).setId(0);
                 }
             }
             break;
@@ -229,6 +234,13 @@ void render_area::launch_algo(){
             while (algo.next()==false) {
                 repaint();
                 Sleep(this->algo_delay);
+            }
+            int x_size = this->graph.size()[0];
+            int y_size = this->graph.size()[1];
+            for(int i = 0; i < x_size; i++){
+                for(int j = 0; j< y_size; j++){
+                    this->graph(i,j).setId(0);
+                }
             }
             break;
         }

@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("Projet Path Finding");
+
     ui->main_Layout->addWidget(render);
 
     //Connection with signals

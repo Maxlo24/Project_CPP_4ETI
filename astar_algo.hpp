@@ -14,7 +14,7 @@ public:
 
 
 private :
-    priority_queue<cell*> prioQueue;
+    std::priority_queue<cell*, std::vector<cell*>,Compare> prioQueue;
     void perfect_path(cell *last);
 };
 

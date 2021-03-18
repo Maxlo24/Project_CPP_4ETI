@@ -14,17 +14,13 @@ bool maze_generator::generate(){
         this->algo_stack.pop();
 
         std::vector<cell*> next_cell;
-        map<string,cell*> neighbors = currentCell->fourN();
-
-        //std::cout<<neighbors["right"]->Neighbors["left"]->state<<std::endl;
+        map<string,cell*> neighbors = currentCell->Neighborshood();
 
         for (auto const& [key, val] : neighbors) // C++ 17 !
         {
-//            if(key == "right"){
-//                std::cout<<states::end<<"state "<<val->state<<std::endl;
-//            }
+
             if(val->type() == states::obstacle){
-                map<string,cell*> neighbor_neighbors = val->fourN();
+                map<string,cell*> neighbor_neighbors = val->Neighborshood();
                 if(neighbor_neighbors[key]->type() == states::obstacle){
                     val->type() = states::clear;
                     neighbor_neighbors[key]->type()=states::clear;
