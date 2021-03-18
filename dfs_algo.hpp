@@ -16,7 +16,7 @@ public:
 
 private :
     stack<cell*> algo_stack;
-    void perfect_path(cell *last);
+    void relative_path(cell *last);
 };
 
 #endif // DFS_ALGO_HPP

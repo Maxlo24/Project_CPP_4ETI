@@ -28,7 +28,7 @@ bool DFS_algo::next(){
         if(val->infos() == states::end){
             val->parent() = currentCell;
             ret = true;
-            perfect_path(val->parent());
+            relative_path(val->parent());
         }
 
     }
@@ -38,12 +38,39 @@ bool DFS_algo::next(){
     return ret;
 }
 
-void DFS_algo::perfect_path(cell *last){
-
+void DFS_algo::relative_path(cell *last) {
     cell *actual_cell = last;
 
-    while (actual_cell->infos() != states::start) {
-        actual_cell->setInfos(states::perfect_path);
-        actual_cell = actual_cell->parent();
+    if(actual_cell->fourN()["top"]->infos() == states::end) {
+        this->relativeEnd[1] -= 1;
     }
+    else if(actual_cell->fourN()["bot"]->infos() == states::end) {
+        this->relativeEnd[1] += 1;
+    }
+    else if(actual_cell->fourN()["left"]->infos() == states::end) {
+        this->relativeEnd[0] -= 1;
+    }
+    else if(actual_cell->fourN()["right"]->infos() == states::end) {
+        this->relativeEnd[0] += 1;
+    }
+
+    while (actual_cell->infos() != states::start) {
+        if(actual_cell->parent()->fourN()["top"] == actual_cell) {
+            this->relativeEnd[1] -= 1;
+        }
+        else if(actual_cell->parent()->fourN()["bot"] == actual_cell) {
+            this->relativeEnd[1] += 1;
+        }
+        else if(actual_cell->parent()->fourN()["left"] == actual_cell) {
+            this->relativeEnd[0] -= 1;
+        }
+        else if(actual_cell->parent()->fourN()["right"] == actual_cell) {
+            this->relativeEnd[0] += 1;
+        }
+
+        actual_cell = actual_cell->parent();
+
+
+    }
+    std::cout << relativeEnd[0] << " " << relativeEnd[1] << std::endl;
 }

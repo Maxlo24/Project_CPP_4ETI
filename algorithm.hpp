@@ -1,10 +1,13 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 #include "cell.hpp"
+#include <vector>
 #include <queue>
 #include <stack>
+using std::vector;
 using std::queue;
 using std::stack;
+using std::priority_queue;
 
 // Mother class for all algorithm
 class Algorithm
@@ -18,10 +21,13 @@ public:
 
     // pure virtual methodes
     virtual bool next()  =0;
-    // TODO interruption
+
+    //
+    vector<int> relEnd() const;
 
 protected:
     cell *startPoint;
+    vector<int> relativeEnd; // relative position of the end to the start point
 
 };
 
