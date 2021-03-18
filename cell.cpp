@@ -60,3 +60,7 @@ cell*& cell::parent(){
 states& cell::type() {
     return this->state;
 }
+
+map<string,cell*>& cell::Neighborshood() {
+    return this->Neighbors;
+}

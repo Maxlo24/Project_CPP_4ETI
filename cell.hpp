@@ -37,6 +37,8 @@ private:
     friend class render_area;
     states& type();
     void addNeighbors(string direction, cell* ptrC);
+    map<string,cell*>& Neighborshood();
+
 };
 
 
