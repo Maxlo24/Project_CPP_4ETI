@@ -35,6 +35,7 @@ private:
     cell *cell_parent;
 
     friend class render_area;
+    friend class maze_generator;
     states& type();
     void addNeighbors(string direction, cell* ptrC);
     map<string,cell*>& Neighborshood();
