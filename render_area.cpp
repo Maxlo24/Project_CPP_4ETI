@@ -210,7 +210,7 @@ void render_area::launch_algo(){
             std::cout << algo2.relEnd()[0] << " " << algo2.relEnd()[1] << std::endl;
             if((algo2.relEnd()[0] != 0) || (algo2.relEnd()[1] != 0)) {
                 repaint();
-                Sleep(2000);
+                Sleep(1000);
                 this->cleanGrid(); // TODO enlever
                 std::cout << "A* : " << std::endl;
                 ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
@@ -219,7 +219,7 @@ void render_area::launch_algo(){
                     repaint();
                     Sleep(this->algo_delay);
                 }
-            }//
+            }
             int x_size = this->graph.size()[0];
             int y_size = this->graph.size()[1];
             for(int i = 0; i < x_size; i++){
