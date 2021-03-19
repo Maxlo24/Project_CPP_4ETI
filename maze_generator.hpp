@@ -21,6 +21,8 @@ public:
 
 private :
     stack<cell*> algo_stack;
+    bool end_set;
+    cell *end_cell;
 };
 
 #endif // MAZE_GENERATOR_HPP

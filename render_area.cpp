@@ -13,7 +13,7 @@ render_area::render_area(QWidget *parent)
 
     this->running = false;
     this->algo_select = 0;
-    this->algo_delay = 0;
+    this->algo_delay = -1;
 
     init_fig();
 }
@@ -140,6 +140,7 @@ void render_area::paintEvent(QPaintEvent*)
 // TODO counter
 void render_area::generateMaze()
 {
+    std::cout<<"Init maze..."<<std::endl;
     int x_size = this->graph.size()[0];
     int y_size = this->graph.size()[1];
     for(int i = 0; i < x_size; i++){
@@ -153,18 +154,24 @@ void render_area::generateMaze()
     this->graph(x_rand,y_rand).type() = states::start;
     this->start_point = {x_rand,y_rand};
     maze_generator maze = maze_generator(&(this->graph(start_point[0],start_point[1])));
-    maze.generate();
+
+    while (maze.generate()==false) {
+        if(this->algo_delay >= 0){
+            repaint();
+            Sleep(this->algo_delay);
+        }
+    }
 
     for(int i = 1; i < x_size-1; i++){
         for(int j = 1; j< y_size-1; j++){
 
             if (rand()%15<1) {
-                this->graph(i,j).type()  = states::clear;
+                if(this->graph(i,j).infos() == states::obstacle)
+                    this->graph(i,j).type()  = states::clear;
             }
-
         }
     }
-
+    std::cout<<"Maze generated"<<std::endl;
     repaint();
 }
 
@@ -190,13 +197,18 @@ void render_area::launch_algo(){
     std::cout<<"Algo selected : "<<this->algo_select<<std::endl;
     std::cout<<"Searching ..."<<std::endl;
 
+
+    int cpt = 0;
     switch (this->algo_select) {
         case 0:
             {
             BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo.next()==false) {
-                repaint();
-                Sleep(this->algo_delay);
+                if(this->algo_delay >= 0){
+                    repaint();
+                    Sleep(this->algo_delay);
+                }
+                cpt++;
             }
             break;
             }
@@ -204,8 +216,11 @@ void render_area::launch_algo(){
             {
             DFS_algo algo2 = DFS_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo2.next()==false) {
-                repaint();
-                Sleep(this->algo_delay);
+                if(this->algo_delay >= 0){
+                    repaint();
+                    Sleep(this->algo_delay);
+                }
+                cpt++;
             }
             std::cout << algo2.relEnd()[0] << " " << algo2.relEnd()[1] << std::endl;
             if((algo2.relEnd()[0] != 0) || (algo2.relEnd()[1] != 0)) {
@@ -216,8 +231,11 @@ void render_area::launch_algo(){
                 ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
                 //
                 while (algo2b.next()==false) {
-                    repaint();
-                    Sleep(this->algo_delay);
+                    if(this->algo_delay >= 0){
+                        repaint();
+                        Sleep(this->algo_delay);
+                    }
+                    cpt++;
                 }
             }
             int x_size = this->graph.size()[0];
@@ -232,8 +250,11 @@ void render_area::launch_algo(){
         case 2:{
             Dijkstra_algo algo = Dijkstra_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo.next()==false) {
-                repaint();
-                Sleep(this->algo_delay);
+                if(this->algo_delay >= 0){
+                    repaint();
+                    Sleep(this->algo_delay);
+                }
+                cpt++;
             }
             int x_size = this->graph.size()[0];
             int y_size = this->graph.size()[1];
@@ -244,9 +265,11 @@ void render_area::launch_algo(){
             }
             break;
         }
+        repaint();
     }
 
     std::cout<<"End"<<std::endl;
+    std::cout<<"Cycle number : "<<cpt<<std::endl;
     this->running = false;
     this->setCursor(Qt::CrossCursor);
     repaint();
@@ -288,7 +311,7 @@ void render_area::update_grid_size(int i){
 }
 
 void render_area::update_algo_speed(int speed){
-    this->algo_delay = 40*(speed-1);
+    this->algo_delay = 40*(speed-2);
     std::cout<<"Algo delay : "<<this->algo_delay<<std::endl;
 }
 
