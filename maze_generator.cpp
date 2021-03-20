@@ -2,8 +2,9 @@
 
 maze_generator::maze_generator(cell *startPoint)
 {
+    startPoint->setId(0);
     this->algo_stack.push(startPoint);
-    this->end_set = false;
+    this->max_dist = 0;
 }
 
 bool maze_generator::generate(){
@@ -20,24 +21,28 @@ bool maze_generator::generate(){
 
         if(val->type() == states::obstacle){
             map<string,cell*> neighbor_neighbors = val->Neighborshood();
-            if(neighbor_neighbors[key]->type() == states::obstacle){
+            if(neighbor_neighbors[key]->type() == states::obstacle || (neighbor_neighbors[key]->type() == states::clear && rand()%30<1)){
                 val->type() = states::clear;
                 neighbor_neighbors[key]->type()=states::clear;
                 next_cell.push_back(neighbor_neighbors[key]);
             }
         }
     }
-    if(next_cell.size() == 0 && end_set==false){
-        currentCell->type() = states::end;
-        this->end_set=true;
+    if(next_cell.size() == 0){
+        if(this->max_dist < currentCell->id()){
+            this->end_cell = currentCell;
+            this->max_dist = currentCell->id();
+        }
     }
     while (next_cell.size() != 0) {
         int dir = rand() %next_cell.size();
+        next_cell[dir]->setId(currentCell->id()+1);
         this->algo_stack.push(next_cell[dir]);
         next_cell.erase(next_cell.begin()+dir);
     }
 
     if (this->algo_stack.empty()){
+        this->end_cell->type() = states::end;
         ret = true;
     }
 

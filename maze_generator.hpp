@@ -21,8 +21,8 @@ public:
 
 private :
     stack<cell*> algo_stack;
-    bool end_set;
     cell *end_cell;
+    int max_dist;
 };
 
 #endif // MAZE_GENERATOR_HPP

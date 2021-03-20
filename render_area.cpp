@@ -162,15 +162,6 @@ void render_area::generateMaze()
         }
     }
 
-    for(int i = 1; i < x_size-1; i++){
-        for(int j = 1; j< y_size-1; j++){
-
-            if (rand()%15<1) {
-                if(this->graph(i,j).infos() == states::obstacle)
-                    this->graph(i,j).type()  = states::clear;
-            }
-        }
-    }
     std::cout<<"Maze generated"<<std::endl;
     repaint();
 }
@@ -206,7 +197,7 @@ void render_area::launch_algo(){
             while (algo.next()==false) {
                 if(this->algo_delay >= 0){
                     repaint();
-                    Sleep(this->algo_delay);
+                    QThread::msleep(this->algo_delay);
                 }
                 cpt++;
             }
@@ -218,14 +209,14 @@ void render_area::launch_algo(){
             while (algo2.next()==false) {
                 if(this->algo_delay >= 0){
                     repaint();
-                    Sleep(this->algo_delay);
+                    QThread::msleep(this->algo_delay);
                 }
                 cpt++;
             }
             std::cout << algo2.relEnd()[0] << " " << algo2.relEnd()[1] << std::endl;
             if((algo2.relEnd()[0] != 0) || (algo2.relEnd()[1] != 0)) {
                 repaint();
-                Sleep(1000);
+                QThread::msleep(1000);
                 this->cleanGrid(); // TODO enlever
                 std::cout << "A* : " << std::endl;
                 ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
@@ -233,7 +224,7 @@ void render_area::launch_algo(){
                 while (algo2b.next()==false) {
                     if(this->algo_delay >= 0){
                         repaint();
-                        Sleep(this->algo_delay);
+                        QThread::msleep(this->algo_delay);
                     }
                     cpt++;
                 }
@@ -252,7 +243,7 @@ void render_area::launch_algo(){
             while (algo.next()==false) {
                 if(this->algo_delay >= 0){
                     repaint();
-                    Sleep(this->algo_delay);
+                    QThread::msleep(this->algo_delay);
                 }
                 cpt++;
             }

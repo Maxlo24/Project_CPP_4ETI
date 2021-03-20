@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QStyle>
 #include <QCursor>
+#include <QThread>
 
 #include <list>
 #include <vector>
