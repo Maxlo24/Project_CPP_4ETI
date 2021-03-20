@@ -223,6 +223,7 @@ void render_area::launch_algo(){
             vector<int> relEnd = this->graph(start_point[0],start_point[1]).relPos();
             std::cout << relEnd[0] << " " << relEnd[1] << std::endl;
             if((relEnd[0] != 0) || (relEnd[1] != 0)) {
+                this->cpt_label->setText(QString::number(cpt));
                 std::cout<<"Cycle number : "<<cpt<<std::endl;
                 repaint();
                 QThread::msleep(1000);
