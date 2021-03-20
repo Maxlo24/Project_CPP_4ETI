@@ -1,7 +1,7 @@
 #include "render_area.hpp"
 
 render_area::render_area(QWidget *parent)
-    :QWidget(parent),point_sets(),mouse_point(),is_left_clicked(),is_right_clicked()
+    :QWidget(parent),mouse_point(),is_left_clicked(),is_right_clicked()
 {
     this->width = this->size().width();
     this->height = this->size().height();
@@ -30,6 +30,7 @@ void render_area::init_fig()
     vector<int> s = {0,0};
     this->start_point = s;
 
+    //Graph creation
     switch (this->graph_size_select) {
         case 1:
                 this->graph = graph2D<cell>(12,9);
@@ -46,8 +47,7 @@ void render_area::init_fig()
     }
     cell border_cell = cell(states::border);
     this->graph.border() = border_cell;
-    std::cout<<"Taille de la grille : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
-
+    std::cout<<"Graph size : "<<this->graph.size()[0]<<"x"<<this->graph.size()[1]<<std::endl;
 
     this->dx = this->width / this->graph.size()[0];
     this->dy = this->height / this->graph.size()[1];
@@ -64,6 +64,7 @@ void render_area::init_fig()
 
 }
 
+//fill the graph neighbor
 void render_area::fillNeighbors() {
     int x = this->graph.size()[0];
     int y = this->graph.size()[1];
@@ -98,7 +99,6 @@ void render_area::fillNeighbors() {
     }
 }
 
-
 void render_area::paintEvent(QPaintEvent*)
 {
 
@@ -120,6 +120,7 @@ void render_area::paintEvent(QPaintEvent*)
     int x = this->graph.size()[0];
     int y = this->graph.size()[1];
 
+    // select the brush color
     for(int i = 0; i < x; i++){
         for(int j = 0; j< y; j++){
             switch (this->graph(i,j).infos()) {
@@ -143,11 +144,14 @@ void render_area::generateMaze()
     std::cout<<"Init maze..."<<std::endl;
     int x_size = this->graph.size()[0];
     int y_size = this->graph.size()[1];
+    // all graph set with obstacles
     for(int i = 0; i < x_size; i++){
         for(int j = 0; j< y_size; j++){
             this->graph(i,j).type()  = states::obstacle;
         }
     }
+
+    //random start point
     int x_rand = rand() %x_size;
     int y_rand = rand() %y_size;
 
@@ -191,6 +195,7 @@ void render_area::launch_algo(){
 
     int cpt = 0;
     switch (this->algo_select) {
+        //BFS_algo
         case 0:
             {
             BFS_algo algo = BFS_algo(&(this->graph(start_point[0],start_point[1])));
@@ -203,6 +208,8 @@ void render_area::launch_algo(){
             }
             break;
             }
+
+        //DFS_algo + ASTAR_algo
         case 1:
             {
             DFS_algo algo2 = DFS_algo(&(this->graph(start_point[0],start_point[1])));
@@ -238,6 +245,8 @@ void render_area::launch_algo(){
             }
             break;
             }
+
+        //Dijkstra_algo
         case 2:{
             Dijkstra_algo algo = Dijkstra_algo(&(this->graph(start_point[0],start_point[1])));
             while (algo.next()==false) {
@@ -327,6 +336,7 @@ void render_area::reset_grid(){
     repaint();
 }
 
+// function called whe user is painting with the mouse
 void render_area::paint(){
     int i = mouse_point.x/dx;
     int j = mouse_point.y/dy;

@@ -11,10 +11,12 @@ cell::cell()
     this->cell_parent = this;
 }
 
+// Id getter
 int cell::id() const{
     return this->ID;
 }
 
+// Id setter
 void cell::setId(int id){
     this->ID = id;
 }

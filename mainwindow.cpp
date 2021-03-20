@@ -34,11 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
     //Set obstacle readioButton
     ui->ObstacleradioButton->setChecked(true);
 
+    //brush selection
     connect(ui->ObstacleradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
     connect(ui->StartradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
     connect(ui->EndradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
-
-    //connect(this, SIGNAL(get_groupBox_select()),this->render, SLOT(update_brush_type(int)));
 
 }
 
@@ -48,6 +47,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//call update_brush_type function
 void MainWindow::get_groupBox_select(){
     if (ui->ObstacleradioButton->isChecked()){
         this->render->update_brush_type(states::obstacle);

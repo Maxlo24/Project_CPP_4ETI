@@ -6,6 +6,7 @@
 class BFS_algo : public Algorithm
 {
 public:
+    //constructors
     BFS_algo()= default;
     BFS_algo(cell *startPoint);
 
@@ -14,7 +15,9 @@ public:
 
 
 private :
+    //arguments
     queue<cell*> algo_queue;
+    //methodes
     void perfect_path(cell *last);
 };
 

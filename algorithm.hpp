@@ -9,6 +9,7 @@ using std::queue;
 using std::stack;
 using std::priority_queue;
 
+// A custom compare methode used by priority queue
 struct Compare {
   bool operator()(cell*a,cell*b) {
       return a->id() > b->id();
