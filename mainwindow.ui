@@ -257,32 +257,6 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
      <string>Informations</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="cycleNumber">
-    <property name="geometry">
-     <rect>
-      <x>793</x>
-      <y>420</y>
-      <width>71</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>8</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="value" stdset="0">
-     <double>10000.000000000000000</double>
-    </property>
-   </widget>
    <widget class="QLabel" name="Partie_Algo_4">
     <property name="geometry">
      <rect>
@@ -299,7 +273,7 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
      </font>
     </property>
     <property name="text">
-     <string>Cycle number</string>
+     <string>Cycle number :</string>
     </property>
    </widget>
    <widget class="QPushButton" name="resetButton">
@@ -527,6 +501,24 @@ color: rgb(43, 43, 43);</string>
     </property>
     <layout class="QVBoxLayout" name="main_Layout_2"/>
    </widget>
+   <widget class="QLabel" name="cycle_nbr_txt">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>420</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
    <zorder>verticalFrame_2</zorder>
    <zorder>quitButton</zorder>
    <zorder>verticalLayoutWidget</zorder>
@@ -540,7 +532,6 @@ color: rgb(43, 43, 43);</string>
    <zorder>taillePinceauLabel</zorder>
    <zorder>mazeButton</zorder>
    <zorder>Partie_Env_2</zorder>
-   <zorder>cycleNumber</zorder>
    <zorder>Partie_Algo_4</zorder>
    <zorder>resetButton</zorder>
    <zorder>tailleGrilleLabel</zorder>
@@ -548,6 +539,7 @@ color: rgb(43, 43, 43);</string>
    <zorder>taillePinceauLabel_2</zorder>
    <zorder>taillePinceauLabel_3</zorder>
    <zorder>BrushgroupBox</zorder>
+   <zorder>cycle_nbr_txt</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

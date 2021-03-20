@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->StartradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
     connect(ui->EndradioButton,SIGNAL(clicked()), this, SLOT(get_groupBox_select()));
 
+    this->render->give_label(ui->cycle_nbr_txt);
 }
 
 

@@ -270,6 +270,7 @@ void render_area::launch_algo(){
 
     std::cout<<"End"<<std::endl;
     std::cout<<"Cycle number : "<<cpt<<std::endl;
+    this->cpt_label->setText(QString::number(cpt));
     this->running = false;
     this->setCursor(Qt::CrossCursor);
     repaint();
@@ -401,4 +402,8 @@ void render_area::brush_paint_cell(int i, int j, states color){
             this->graph(i,j).type() = color;
             break;
     }
+}
+
+void render_area::give_label(QLabel *label){
+    this->cpt_label = label;
 }

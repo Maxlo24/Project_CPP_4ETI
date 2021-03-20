@@ -44,6 +44,8 @@ public:
     void init_fig();
     void update_brush_type(states type);
 
+    void give_label(QLabel *label);
+
 
 protected:
     /** Actual drawing function */
@@ -105,6 +107,8 @@ private: //attributes
     /** Indicates if the mouse is currently clicked or not */
     bool is_left_clicked;
     bool is_right_clicked;
+
+    QLabel *cpt_label;
 
 };
 
