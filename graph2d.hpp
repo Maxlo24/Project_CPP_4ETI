@@ -5,6 +5,8 @@
 
 using std::vector;
 
+//Template class for the graph 2D
+// By default it can contain floats
 template<typename T = float>
 class graph2D
 {
@@ -23,13 +25,14 @@ public:
     vector<int> size() const;
 
 private:
+    //Arguments
    int width;
    int height;
    vector<vector<T>> tableau;
    T graph_border;
-
 };
 
+//constructor with the size given
 template<typename T>
 graph2D<T>::graph2D(int x, int y){
     this->width = x;
@@ -47,6 +50,7 @@ graph2D<T>::graph2D(int x, int y){
     }
 }
 
+// re-definition of the () operator, to access a element of the graph
 template<typename T>
 const T& graph2D<T>::operator()(int i, int j) const{
     if(i<0 || i >= this->width || j<0 || j >= this->height)
@@ -54,6 +58,7 @@ const T& graph2D<T>::operator()(int i, int j) const{
     return this->tableau[i][j];
 }
 
+// re-definition of the () operator, to set an element of the graph
 template<typename T>
 T& graph2D<T>::operator()(int i, int j){
     if(i<0 || i >= this->width || j<0 || j >= this->height)
@@ -61,11 +66,13 @@ T& graph2D<T>::operator()(int i, int j){
     return this->tableau[i][j];
 }
 
+// to get the graph border element
 template<typename T>
 const T& graph2D<T>::border() const{
     return this->graph_border;
 }
 
+// to set the graph border element
 template<typename T>
 T& graph2D<T>::border(){
     return this->graph_border;

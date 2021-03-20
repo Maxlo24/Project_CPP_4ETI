@@ -10,9 +10,11 @@ struct Compare {
   }
 };
 
+// Class of the dijkstra algorithme, heritate of Algorithme
 class Dijkstra_algo : public Algorithm
 {
 public:
+    //constructors
     Dijkstra_algo();
     Dijkstra_algo(cell *startPoint);
 
@@ -21,8 +23,9 @@ public:
 
 
 private:
-
+    //arguments
     std::priority_queue<cell*, std::vector<cell*>,Compare> algo_queue;
+    //methode
     void perfect_path(cell *last);
 };
 

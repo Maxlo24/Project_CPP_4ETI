@@ -5,14 +5,17 @@ BFS_algo::BFS_algo(cell *startPoint) :Algorithm(startPoint)
     this->algo_queue.push(this->startPoint);
 }
 
+
+// process the nex iteration of the algorithme
 bool BFS_algo::next(){
     bool ret = false;
 
     cell *currentCell = this->algo_queue.front();
     this->algo_queue.pop();
 
+    //get all the current cellneighbors
     map<string,cell*> neighbors = currentCell->fourN();
-    for (auto const& [key, val] : neighbors) // C++ 17 !
+    for (auto const& [key, val] : neighbors) // C++ 17
     {
         if(val->infos() == states::end){
             val->parent() = currentCell;
@@ -33,6 +36,7 @@ bool BFS_algo::next(){
     return ret;
 }
 
+// generate the perfect path
 void BFS_algo::perfect_path(cell *last){
 
     cell *actual_cell = last;

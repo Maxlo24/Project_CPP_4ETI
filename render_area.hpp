@@ -32,17 +32,19 @@ using std::vector;
 class QLabel;
 
 
-
+//The main class wher all the human/machine interaction are managed
 class render_area : public QWidget
 {
     Q_OBJECT
 public:
-
+    //constructor
     render_area(QWidget *parent = 0);
     ~render_area();
 
     void init_fig();
     void update_brush_type(states type);
+
+    void give_label(QLabel *label);
 
 
 protected:
@@ -64,6 +66,7 @@ protected:
 
 
 private slots:
+    // functions called by the GUI
     void update_grid_size(int size);
     void update_brush_size(int size);
     void update_algo_select(int select);
@@ -99,15 +102,13 @@ private: //attributes
     int dx;
     int dy;
 
-
-    /** Storage for all the discrete vertices of the objets that we use to draw them */
-    vector<vector<vec2> > point_sets;
-
     /** The current position of the click of the mouse */
     vec2 mouse_point;
     /** Indicates if the mouse is currently clicked or not */
     bool is_left_clicked;
     bool is_right_clicked;
+
+    QLabel *cpt_label;
 
 };
 

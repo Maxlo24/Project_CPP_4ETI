@@ -8,10 +8,11 @@
 
 using std::stack;
 
-
+// A class to generate a maze in a graph
 class maze_generator
 {
 public:
+    //constructors
     maze_generator()= default;
     maze_generator(cell *startPoint);
 
@@ -20,6 +21,7 @@ public:
 
 
 private :
+    //arguments
     stack<cell*> algo_stack;
     cell *end_cell;
     int max_dist;

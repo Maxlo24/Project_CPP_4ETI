@@ -10,10 +10,12 @@ cell::cell(states etat)
 
 cell::cell() : cell(states::clear) {}
 
+// Id getter
 int cell::id() const{
     return this->ID;
 }
 
+// Id setter
 void cell::setId(int id){
     this->ID = id;
 }

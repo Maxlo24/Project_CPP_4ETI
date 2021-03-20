@@ -8,7 +8,6 @@ Dijkstra_algo::Dijkstra_algo(cell *startPoint) :Algorithm(startPoint)
 
 bool Dijkstra_algo::next(){
     bool ret = false;
-//    std::cout<<this->algo_queue.size()<<std::endl;
     cell *currentCell = this->algo_queue.top();
     this->algo_queue.pop();
 
