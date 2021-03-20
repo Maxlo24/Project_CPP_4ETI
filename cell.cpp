@@ -3,13 +3,12 @@
 cell::cell(states etat)
 {
     this->state = etat;
+    this->relativePosition.push_back(0);
+    this->relativePosition.push_back(0);
+    this->ID = -1;
 }
 
-cell::cell()
-{
-    this->state = states::clear;
-    this->cell_parent = this;
-}
+cell::cell() : cell(states::clear) {}
 
 int cell::id() const{
     return this->ID;
@@ -33,6 +32,19 @@ void cell::setInfos(states s) {
         throw;
     }
     this->state = s;
+}
+
+vector<int> cell::relPos() const {
+    return this->relativePosition;
+}
+
+void cell::setPos(int dx, int dy) {
+    this->relativePosition[0] = dx;
+    this->relativePosition[1] = dy;
+}
+
+int cell::normPos() {
+    return abs(this->relativePosition[0])+abs(this->relativePosition[1]);
 }
 
 void cell::addNeighbors(string direction, cell* ptrC) {

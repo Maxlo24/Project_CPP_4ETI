@@ -137,7 +137,7 @@ void render_area::paintEvent(QPaintEvent*)
         }
     }
 }
-// TODO counter
+
 void render_area::generateMaze()
 {
     std::cout<<"Init maze..."<<std::endl;
@@ -213,14 +213,17 @@ void render_area::launch_algo(){
                 }
                 cpt++;
             }
-            std::cout << algo2.relEnd()[0] << " " << algo2.relEnd()[1] << std::endl;
-            if((algo2.relEnd()[0] != 0) || (algo2.relEnd()[1] != 0)) {
+            vector<int> relEnd = this->graph(start_point[0],start_point[1]).relPos();
+            std::cout << relEnd[0] << " " << relEnd[1] << std::endl;
+            if((relEnd[0] != 0) || (relEnd[1] != 0)) {
+                std::cout<<"Cycle number : "<<cpt<<std::endl;
                 repaint();
                 QThread::msleep(1000);
-                this->cleanGrid(); // TODO enlever
+                this->cleanGrid();
                 std::cout << "A* : " << std::endl;
-                ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),algo2.relEnd());
-                //
+
+                ASTAR_algo algo2b = ASTAR_algo(&(this->graph(start_point[0],start_point[1])),relEnd);
+                // debut A*
                 while (algo2b.next()==false) {
                     if(this->algo_delay >= 0){
                         repaint();
@@ -228,12 +231,14 @@ void render_area::launch_algo(){
                     }
                     cpt++;
                 }
+                // fin A*
             }
             int x_size = this->graph.size()[0];
             int y_size = this->graph.size()[1];
             for(int i = 0; i < x_size; i++){
                 for(int j = 0; j< y_size; j++){
-                    this->graph(i,j).setId(0);
+                    this->graph(i,j).setId(-1);
+                    this->graph(i,j).setPos(0,0);
                 }
             }
             break;
@@ -251,7 +256,7 @@ void render_area::launch_algo(){
             int y_size = this->graph.size()[1];
             for(int i = 0; i < x_size; i++){
                 for(int j = 0; j< y_size; j++){
-                    this->graph(i,j).setId(0);
+                    this->graph(i,j).setId(-1);
                 }
             }
             break;
