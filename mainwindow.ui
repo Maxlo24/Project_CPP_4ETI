@@ -24,8 +24,8 @@ color: rgb(43, 43, 43);</string>
    <widget class="QPushButton" name="quitButton">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>510</y>
+      <x>690</x>
+      <y>540</y>
       <width>191</width>
       <height>25</height>
      </rect>
@@ -36,7 +36,7 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
 </string>
     </property>
     <property name="text">
-     <string>Quitter</string>
+     <string>Quit</string>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -243,7 +243,7 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>380</y>
+      <y>390</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -260,8 +260,8 @@ QPushButton::pressed{border: 1px solid blue;color: blue;};
    <widget class="QLabel" name="Partie_Algo_4">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>420</y>
+      <x>700</x>
+      <y>440</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -504,9 +504,9 @@ color: rgb(43, 43, 43);</string>
    <widget class="QLabel" name="cycle_nbr_txt">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>420</y>
-      <width>101</width>
+      <x>800</x>
+      <y>440</y>
+      <width>71</width>
       <height>21</height>
      </rect>
     </property>
@@ -514,6 +514,9 @@ color: rgb(43, 43, 43);</string>
      <font>
       <pointsize>11</pointsize>
      </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="text">
      <string>0</string>
