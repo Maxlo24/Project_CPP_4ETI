@@ -1,5 +1,6 @@
 # Project CPP 4ETI
 This project is done during our Master degree at CPE Lyon. The goal was to implement different map exploration's algorithms. In our case, by giving the exploration algorithms a starting point, they must find the end and give the shortest path to get there on a grid with obstacles.
+This experience was very enriching, allowing us to implement the various concepts seen in development so far, including OOP and its principles. All of this in a low level language that is powerful and very interesting to handle.
 
 ## Installation
 *Compilation have been successfully tested on Windows 10 x64 using our .pro file with MinGW64 8.1, Qt5.15.2 & C++17.*   
