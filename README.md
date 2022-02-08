@@ -3,7 +3,7 @@ This project is done during our Master degree at CPE Lyon. The goal was to imple
 
 ## Installation
 *Compilation have been successfully tested on Windows 10 x64 using our .pro file with MinGW64 8.1, Qt5.15.2 & C++17.*
-With QtCreator, you just need to click on the .pro file and select the right Qt version.
+With QtCreator, you just need to click on the .pro file and select the right Qt version.    
 **Must be compiled with QT5 & C++17**
 
 ## Files
@@ -26,7 +26,7 @@ mainwindow.hpp
 mainwindow.ui  
 maze_generator.cpp  
 maze_generator.hpp  
-Project_CPP_4ETI.pro
+Project_CPP_4ETI.pro   
 README.md  
 render_area.cpp  
 render_area.hpp  
