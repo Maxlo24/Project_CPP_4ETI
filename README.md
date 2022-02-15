@@ -9,13 +9,11 @@ This experience was very enriching, allowing us to implement the various concept
 With QtCreator, you just need to click on the .pro file and select the right Qt version.    
 **Must be compiled with QT5 & C++17**
 
-## Implemented algorithms   
-```
-- A* Algorithm   
+## Implemented algorithms    
 - BFS Algorithm    
-- DFS Algorithm    
-- Dijkstra Algorithm    
-```
+- DFS Algorithm  
+- A* Algorithm    
+- Dijkstra Algorithm  
 
 ## Files
 ```
